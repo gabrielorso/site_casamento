@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Casamento Verena & Messias — Confirmação & Presentes</title>
+  <meta name="description" content="Confirmação de presença e lista de presentes do casamento." />
+
+  <!-- Tipografia -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#faf7f5; --card:#fff; --text:#1f2937; --muted:#5f6b7a;
+      --brand:#E6007E; --brand-weak:#FCE1F1; --border:#e7e3de;
+      --radius:14px; --shadow:0 6px 20px rgba(17,24,39,.06);
+      --bg-photo:url("img/foto-fundo.JPG");
+      --overlay-light:rgba(250,247,245,.78); --overlay-dark:rgba(17,20,22,.70);
+      --bg-pos:50% 50%; --bg-pos-mobile:50% 20%; --header-tint:rgba(255,255,255,.96);
+    }
+    /* Reset essencial */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--text); background:var(--bg);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; line-height:1.45;
+    }
+    img{max-width:100%; display:block; height:auto}
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Fundo com foto + sobreposição */
+    body::before{
+      content:""; position:fixed; inset:0; z-index:-1;
+      background-image:linear-gradient(var(--overlay-light),var(--overlay-light)), var(--bg-photo);
+      background-position:50% 50%, var(--bg-pos);
+      background-size:cover, cover; background-repeat:no-repeat, no-repeat;
+      background-attachment:scroll, fixed; transform:translateZ(0);
+    }
+    @media (prefers-color-scheme: dark){
+      body::before{ background-image:linear-gradient(var(--overlay-dark),var(--overlay-dark)), var(--bg-photo); }
+    }
+    @media (max-width:700px){
+      body::before{ background-position:50% 50%, var(--bg-pos-mobile); background-attachment:scroll, scroll; }
+    }
+
+    /* Largura máxima */
+    .container{ max-width:1040px; margin-inline:auto; padding-inline:1rem; }
+
+    /* Cabeçalho fixo */
+    header{
+      padding:2.25rem 0 1rem;
+      text-align:center; position:fixed; inset:0 0 auto 0; z-index:1000;
+      background:var(--header-tint); border-bottom:1px solid var(--border);
+      -webkit-backdrop-filter:saturate(120%) blur(8px); backdrop-filter:saturate(120%) blur(8px);
+      transition:padding .22s ease;
+      box-shadow:0 8px 24px rgba(17,24,39,.08);
+    }
+    header.compact{ padding:.55rem 0; }
+    .hero-title{
+      font-family:"Playfair Display",serif; font-weight:700; letter-spacing:.5px;
+      font-size:clamp(1.7rem,1.1rem + 1.8vw,2.6rem); margin:0 0 .45rem;
+    }
+    .hero-sub{ color:var(--muted); margin:0 auto; max-width:720px; font-size:1.02rem; }
+    header.compact .hero-title{ font-size:clamp(1.2rem,.9rem + 1vw,1.6rem); margin:0; }
+    header.compact .hero-sub{ display:none; }
+
+    /* Nav pílula */
+    .nav{
+      display:inline-flex; gap:.5rem; margin-top:.9rem;
+      background:#fff; border:1px solid var(--border); border-radius:999px; padding:.35rem; box-shadow:var(--shadow);
+      flex-wrap:wrap;
+    }
+    .nav a{ padding:.5rem .9rem; border-radius:999px; font-weight:500; color:var(--text) }
+    .nav a:hover{ background:#f5f5f5; text-decoration:none }
+    .nav a.primary{ background:var(--brand); color:#fff }
+    .nav a.primary:hover{ background:#C20068 }
+    @media (max-width:700px){ .nav{ display:grid; grid-template-columns:1fr 1fr; gap:.35rem } .nav a{text-align:center} }
+    @media (max-width:380px){ .nav{ grid-template-columns:1fr } .nav a{ width:100% } }
+
+    /* Espaçador do header */
+    #header-spacer{ height:120px }
+
+    /* Estrutura principal */
+    main{ padding:0 1rem 3rem; max-width:1040px; margin-inline:auto }
+    section{ margin:2rem 0; scroll-margin-top:var(--anchor-offset, 96px) }
+    h2{ font-family:"Playfair Display",serif; font-size:clamp(1.3rem,1rem + 1.2vw,2rem); margin:0 0 .75rem }
+    p{ margin:.25rem 0 .9rem }
+    section>h2{ color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.35) }
+    #gifts>.muted{ color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.35) }
+
+    /* Cards e grid genérica */
+    .card, form{ background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:1.25rem; box-shadow:var(--shadow) }
+    .grid{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)) }
+
+    /* Form */
+    label{ display:block; font-size:.95rem; margin:.35rem 0; font-weight:500 }
+    input,select,textarea{
+      width:100%; padding:.7rem .8rem; border:1px solid #d6d3cf; border-radius:10px; background:#fff; font:inherit
+    }
+    input:focus,select:focus,textarea:focus{ outline:2px solid #cfe8ff; border-color:#a7d3ff }
+    .form-grid{ display:grid; gap:.9rem }
+    @media(min-width:700px){ .form-grid.cols-2{ grid-template-columns:1fr 1fr } }
+
+    /* Botões */
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+      padding:.7rem .95rem; border-radius:999px; border:1px solid #d0d0d0; background:#fff; cursor:pointer; font-weight:600;
+      transition:transform .06s ease, background .15s ease, border-color .15s ease
+    }
+    .btn:hover{ background:#f7f7f7 } .btn:active{ transform:translateY(1px) } .btn[disabled]{ opacity:.6; cursor:not-allowed }
+    .btn-outline{ border-color:var(--brand); color:var(--brand); background:#fff }
+    .btn-outline:hover{ background:#FCE1F1 }
+
+    /* Mensagens */
+    .muted{ color:var(--muted) }
+    .ok{ color:var(--brand); font-weight:700 }
+    .err{ color:#b00020 }
+    #giftMsg,#rsvpMsg{ margin:.75rem 0; }
+
+    /* Footer */
+    .tag{ display:inline-block; padding:.25rem .7rem; border:1px solid var(--border); border-radius:999px; font-size:.85rem; color:var(--muted); background:#fff }
+    footer{ padding:2rem 1rem; text-align:center; color:var(--muted); font-size:.95rem }
+
+    /* Skeleton */
+    .skeleton{ background:linear-gradient(90deg,#eee,#f7f7f7,#eee); background-size:200% 100%; animation:shimmer 1.2s infinite; border-radius:10px }
+    @keyframes shimmer{ 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+    /* ----- Gifts: cards compactos + foto baixa + linha de ação fixa ----- */
+    #giftsGrid{ display:grid; gap:14px; } /* sobrepõe .grid quando aplicado ao id */
+
+    /* Em celulares medianos: 2 colunas; em bem estreitos: 1 coluna */
+    @media (min-width:400px) and (max-width:768px){
+      #giftsGrid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width:399px){
+      #giftsGrid{ grid-template-columns:1fr; }
+    }
+
+    #gifts .card{ padding:12px 12px 14px; border-radius:12px; }
+    #gifts .card h3{ font-size:.98rem; line-height:1.25; margin:.45rem 0 .2rem; }
+    #gifts .card p{ margin:.2rem 0; font-size:.9rem }
+    #gifts .card .muted{ color:var(--text); text-shadow:none }
+
+    /* Foto mais rasa: desktop/tablet = 16:10; mobile estreito = 21:9 */
+    #gifts .card img{ height:auto !important; aspect-ratio:16/10; object-fit:cover; border-radius:10px; background:#f4f4f4 }
+    @media (max-width:399px){
+      #gifts .card img{ aspect-ratio:21/9; }
+    }
+
+    /* Linha de quantidade + botão: grade estável */
+    #gifts .row{ display:grid; grid-template-columns:74px 1fr; align-items:center; gap:8px; }
+    #gifts .row input[type="number"]{ width:74px; padding:.6rem .6rem; margin:0; }
+    #gifts .row .btn{ justify-self:end; white-space:nowrap; }
+
+    /* ---- Ultra-compact para 1 coluna (≤399px) ---- */
+    @media (max-width:399px){
+      #gifts .card{ padding:10px 10px 12px; border-radius:10px; }
+      #gifts .card h3{ font-size:.94rem; line-height:1.18; margin:.35rem 0 .12rem; }
+      #gifts .card p{ margin:.12rem 0; font-size:.84rem }
+      #gifts .card p.muted{ font-size:.82rem }
+      /* descrição: 1 linha só */
+      #gifts .card p.muted{ display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
+      /* linha de ação mais enxuta */
+      #gifts .row{ grid-template-columns:64px 1fr; gap:6px; }
+      #gifts .row input[type="number"]{ width:64px; padding:.5rem .5rem; }
+      #gifts .row .btn{ padding:.55rem .8rem; font-size:.9rem; }
+    }
+
+    /* Força largura total e evita zoom/escala estranha no mobile */
+    @media (max-width:768px){
+      html,body{ width:100%; max-width:none; overflow-x:hidden }
+      body > header, body > #header-spacer, body > main, body > footer,
+      .container, main, section, .card, form, #giftsGrid{ width:100% !important; max-width:none !important }
+      #header-spacer{ height:96px }
+    }
+
+    /* Acessibilidade */
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto !important; animation:none !important; transition:none !important }
+    }
+
+    /* Tap-to-copy base + toast */
+    .copyable { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    #copy-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%) translateY(12px);
+      background: #E6007E; /* fúcsia */
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.18);
+      font: 600 14px/1.1 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+      z-index: 9999;
+    }
+    #copy-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="hero-title">Verena & Messias</h1>
+      <p class="hero-sub">Confirme sua presença e escolha um presente com carinho. 🩷</p>
+      <nav class="nav" aria-label="Seções">
+        <a id="nav-rsvp" href="#rsvp" class="primary">Confirmar Presença</a>
+        <a id="nav-gifts" href="#gifts">Lista de Presentes</a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="header-spacer" aria-hidden="true"></div>
+
+  <main>
+    <!-- Exemplo manual de “toque-e-copie” (opcional) -->
+    <p class="copyable" data-copy="self" aria-label="Copiar chave PIX">
+      Chave PIX (clique para copiar): <strong>75982314323</strong>
+    </p>
+
+    <!-- Toast de feedback -->
+    <div id="copy-toast" role="status" aria-live="polite" aria-atomic="true">Copiado!</div>
+
+    <section id="rsvp" aria-labelledby="rsvp-title">
+      <h2 id="rsvp-title">Confirme sua Presença</h2>
+      <form id="rsvpForm" class="card" novalidate>
+        <div class="form-grid cols-2">
+          <label>Nome completo
+            <input name="name" autocomplete="name" required>
+          </label>
+          <label>E-mail
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+        </div>
+
+        <div class="form-grid cols-2">
+          <label>Telefone/WhatsApp
+            <input name="phone" autocomplete="tel">
+          </label>
+          <label>Vai comparecer?
+            <select name="attending" required>
+              <option value="">Selecione…</option>
+              <option>Sim</option>
+              <option>Não</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="form-grid cols-2">
+          <label>Adultos
+            <input type="number" name="adults" min="0" value="1" inputmode="numeric">
+          </label>
+          <label>Crianças
+            <input type="number" name="children" min="0" value="0" inputmode="numeric">
+          </label>
+        </div>
+
+        <label>Mensagem (opcional)
+          <textarea name="message" rows="3" placeholder="Alguma observação, restrição alimentar, etc."></textarea>
+        </label>
+
+        <div class="row" style="justify-content:space-between; gap:.6rem; margin-top:.5rem;">
+          <small class="muted">Suas informações são usadas apenas para a organização do evento.</small>
+          <button id="rsvpBtn" type="submit" class="btn btn-outline">Enviar confirmação</button>
+        </div>
+        <div id="rsvpMsg" role="status" aria-live="polite" style="margin-top:.6rem"></div>
+      </form>
+    </section>
+
+    <section id="gifts" aria-labelledby="gifts-title">
+      <h2 id="gifts-title">Lista de Presentes</h2>
+      <p class="muted">Os itens disponíveis aparecem abaixo. Quando esgotar, somem automaticamente.</p>
+
+      <div id="giftsGrid" class="grid" aria-live="polite">
+        <div class="card"><div class="skeleton" style="width:100%;height:140px;"></div><div class="skeleton" style="height:14px;width:60%;margin-top:10px;"></div><div class="skeleton" style="height:14px;width:80%;margin-top:8px;"></div></div>
+        <div class="card"><div class="skeleton" style="width:100%;height:140px;"></div><div class="skeleton" style="height:14px;width:70%;margin-top:10px;"></div><div class="skeleton" style="height:14px;width:65%;margin-top:8px;"></div></div>
+        <div class="card"><div class="skeleton" style="width:100%;height:140px;"></div><div class="skeleton" style="height:14px;width:55%;margin-top:10px;"></div><div class="skeleton" style="height:14px;width:75%;margin-top:8px;"></div></div>
+      </div>
+      <div id="giftMsg" role="status" aria-live="polite" style="margin-top:.6rem"></div>
+    </section>
+  </main>
+
+  <footer>
+    <span class="tag">Casamento Verena & Messias</span>
+  </footer>
+
+  <script>
+    // ----- Header compacto + offset dinâmico -----
+    (function(){
+      try{
+        const header = document.querySelector('header');
+        const spacer = document.getElementById('header-spacer');
+        const navRsvp  = document.getElementById('nav-rsvp');
+        const navGifts = document.getElementById('nav-gifts');
+        const sections = [
+          { id:'rsvp',  el:null, link:navRsvp },
+          { id:'gifts', el:null, link:navGifts }
+        ];
+        let H_EXP = 120, H_COMP = 64;
+
+        function cssVar(name, value){ document.documentElement.style.setProperty(name, value); }
+
+        function measureHeights(){
+          header.classList.remove('compact');
+          const expanded = header.getBoundingClientRect().height || 120;
+          header.classList.add('compact');
+          const compact = header.getBoundingClientRect().height || 64;
+          header.classList.remove('compact');
+
+          H_EXP = Math.round(expanded);
+          H_COMP = Math.round(compact);
+
+          cssVar('--h-expanded', H_EXP + 'px');
+          cssVar('--h-compact',  H_COMP + 'px');
+          cssVar('--anchor-offset', (Math.max(H_EXP, H_COMP) + 16) + 'px');
+          spacer.style.height = H_EXP + 'px';
+
+          sections.forEach(s => s.el = document.getElementById(s.id));
+          updateActiveByScroll();
+        }
+
+        function onScroll(){
+          const threshold = 40;
+          if (window.scrollY > threshold){
+            header.classList.add('compact');
+            spacer.style.height = H_COMP + 'px';
+            cssVar('--anchor-offset', (H_COMP + 16) + 'px');
+          }else{
+            header.classList.remove('compact');
+            spacer.style.height = H_EXP + 'px';
+            cssVar('--anchor-offset', (H_EXP + 16) + 'px');
+          }
+          updateActiveByScroll();
+        }
+
+        function setActive(link){
+          [navRsvp, navGifts].forEach(a => a?.classList.remove('primary'));
+          link?.classList.add('primary');
+        }
+
+        function updateActiveByScroll(){
+          const headerH = header.classList.contains('compact') ? H_COMP : H_EXP;
+          const probe = window.scrollY + headerH + 8;
+          let active = sections[0];
+          for (const s of sections){
+            if (!s.el) continue;
+            const top = s.el.offsetTop, bottom = top + s.el.offsetHeight;
+            if (probe >= top && probe < bottom){ active = s; break; }
+            if (probe >= top) active = s;
+          }
+          setActive(active.link);
+        }
+
+        window.addEventListener('DOMContentLoaded', measureHeights, { once:true });
+        document.fonts?.ready.then(measureHeights).catch(()=>{});
+        window.addEventListener('resize', measureHeights);
+        new ResizeObserver(measureHeights).observe(header);
+        window.addEventListener('scroll', onScroll, { passive:true });
+      }catch(err){ console.error('Header init error:', err); }
+    })();
+
+    // ===========================
+    // Tap-to-copy com REGEX
+    // ===========================
+
+    // Copiar texto (Clipboard API + fallback)
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-9999px';
+      document.body.appendChild(ta);
+      ta.focus(); ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    }
+
+    function showToast(msg = 'Copiado!') {
+      const el = document.getElementById('copy-toast');
+      if (!el) return;
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(window.__copyToastTimer);
+      window.__copyToastTimer = setTimeout(() => el.classList.remove('show'), 1400);
+    }
+
+    const norm = (s)=> (s||'').toString().normalize('NFKC');
+
+    // Regex de chaves PIX (EMV, e-mail, telefone BR, CPF/CNPJ, EVP/UUID)
+    function extractPixKey(text) {
+      const t = norm(text);
+
+      // Pix Copia e Cola (EMV) — geralmente começa com 000201 e é longo
+      const emv = t.match(/\b000201[0-9A-Za-z]{20,}\b/);
+      if (emv) return emv[0];
+
+      const email = t.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i);
+      if (email) return email[0];
+
+      const phone = t.match(/\+?55\s*\(?\d{2}\)?[\s.-]*\d{4,5}[\s.-]?\d{4}\b/);
+      if (phone) return phone[0].replace(/[^\d+]/g, '');
+
+      const cpf = t.match(/\b\d{3}\.?\d{3}\.?\d{3}-?\d{2}\b/);
+      if (cpf) return cpf[0].replace(/\D/g,'');
+      const cnpj = t.match(/\b\d{2}\.?\d{3}\.?\d{3}\/?\d{4}-?\d{2}\b/);
+      if (cnpj) return cnpj[0].replace(/\D/g,'');
+
+      const evp = t.match(/\b[0-9a-f]{8}-?[0-9a-f]{4}-?[1-5][0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}\b/i);
+      if (evp) return evp[0];
+
+      return null;
+    }
+
+    // Marca descrições copiáveis (usa classe gift-desc)
+    function enableTapToCopyOnDescriptions(root = document) {
+      root.querySelectorAll('.gift-desc').forEach(el => {
+        const key = extractPixKey(el.textContent || '');
+        if (!key) return;
+        el.classList.add('copyable');
+        el.setAttribute('data-copy', key);
+        el.setAttribute('aria-label', 'Copiar chave PIX');
+        el.title = 'Toque para copiar a chave PIX';
+      });
+    }
+
+    // Listener global
+    document.addEventListener('click', async (e) => {
+      const target = e.target.closest('[data-copy]');
+      if (!target) return;
+
+      const raw = target.dataset.copy === 'self'
+        ? (target.textContent || '')
+        : target.dataset.copy;
+
+      const text = norm(raw).replace(/^(chave\s*pix|pix|chave)\s*:\s*/i, '').trim();
+
+      try {
+        const ok = await copyText(text);
+        if (navigator.vibrate) navigator.vibrate(10);
+        showToast(ok ? 'Chave copiada!' : 'Não foi possível copiar');
+      } catch {
+        showToast('Não foi possível copiar');
+      }
+    }, { passive: true });
+
+    // ----- Config API -----
+    const API = 'https://script.google.com/macros/s/AKfycbzpgKG6r1Uo9pq3CwNuoAYSQLtVVDUSHGDkLrVha6EMaXP_cBxSpADdzhSJqK_m0zR_Qg/exec';
+
+    // ----- Elementos principais -----
+    const giftsGrid = document.getElementById('giftsGrid');
+    const giftMsg   = document.getElementById('giftMsg');
+    const rsvpForm  = document.getElementById('rsvpForm');
+    const rsvpMsg   = document.getElementById('rsvpMsg');
+    const rsvpBtn   = document.getElementById('rsvpBtn');
+
+    // Coloca a mensagem acima da grade de presentes
+    if (giftMsg && giftsGrid && giftMsg.nextElementSibling !== giftsGrid) {
+      giftsGrid.parentNode.insertBefore(giftMsg, giftsGrid);
+    }
+
+    function showGiftError(msg, detail){
+      giftsGrid.innerHTML = `<div class="card err">${msg}</div>`;
+      if (detail) console.warn(detail.slice(0,1000));
+    }
+
+    // ----- Carrega presentes -----
+    async function loadGifts(){
+      try{
+        const res = await fetch(API + '?action=gifts&ts=' + Date.now(), { method:'GET', cache:'no-store', headers:{ 'Accept':'application/json' } });
+        const txt = await res.text();
+        let data = null;
+        try{ data = JSON.parse(txt); }catch(e){
+          showGiftError('Erro ao interpretar a lista de presentes. (Resposta não é JSON esperada.)', txt);
+          return;
+        }
+
+        const gifts = Array.isArray(data?.gifts) ? data.gifts : [];
+        if (!gifts.length){
+          giftsGrid.innerHTML = '<div class="card"><strong>Todos os presentes já foram escolhidos 🎉</strong><p class="muted">Muito obrigado pelo carinho!</p></div>';
+          return;
+        }
+
+        giftsGrid.innerHTML = gifts.map(g=>{
+          // ADIÇÃO: classe gift-desc para ativar o regex + copiar
+          const desc = g.description ? `<p class="muted gift-desc">${g.description}</p>` : '';
+          const img  = g.image_url ? `<img src="${g.image_url}" alt="${g.title}">` : '';
+          return `
+            <article class="card" aria-label="${g.title}">
+              ${img}
+              <h3 style="margin:.6rem 0 .2rem">${g.title}</h3>
+              ${desc}
+              <p><small class="muted">Disponíveis: ${g.remaining}</small></p>
+              <div class="row" role="group" aria-label="Reservar ${g.title}">
+                <input type="number" min="1" max="${g.remaining}" value="1" id="qty_${g.id}" aria-label="Quantidade para reservar">
+                <button type="button" class="btn btn-outline" onclick="reserve('${g.id}', this)">Reservar</button>
+              </div>
+            </article>
+          `;
+        }).join('');
+
+        // Ativa “toque-e-copie” nas descrições recém inseridas
+        enableTapToCopyOnDescriptions(giftsGrid);
+
+      }catch(e){
+        console.error(e);
+        showGiftError('Erro de conexão ao carregar presentes.', String(e));
+      }
+    }
+
+    // ----- Reserva -----
+    async function reserve(gift_id, btnEl){
+      giftMsg.textContent = '';
+      const qtyInput = document.getElementById('qty_' + gift_id);
+      const qty = Math.max(1, Number(qtyInput?.value || 1));
+
+      const name = (prompt('Seu nome completo:') || '').trim();
+      if (!name){
+        giftMsg.innerHTML = '<span class="err">Informe seu nome completo.</span>';
+        return;
+      }
+
+      async function postReserve(payload){
+        const res = await fetch(API, { method:'POST', body:new URLSearchParams(payload), cache:'no-store', headers:{ 'Accept':'application/json' } });
+        const txt = await res.text();
+        let data = null; try{ data = JSON.parse(txt); }catch(e){ return { ok:false, parseError:true, raw:txt }; }
+        return data;
+      }
+
+      try{
+        if (btnEl){ btnEl.disabled = true; btnEl.textContent = 'Reservando…'; }
+
+        let data = await postReserve({ action:'reserve', gift_id, qty:String(qty), name });
+
+        if (!data.ok && /mail/i.test(String(data.error||''))){
+          const slug = name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') || 'convidado';
+          const placeholderEmail = `${slug}@sem-email.invalid`;
+          data = await postReserve({ action:'reserve', gift_id, qty:String(qty), name, email:placeholderEmail, noemail:'1' });
+        }
+
+        if (data.ok){
+          giftMsg.innerHTML = '<span class="ok">Presente reservado com sucesso! Obrigado 💗</span>';
+          await loadGifts();
+        } else {
+          giftMsg.innerHTML = '<span class="err">' + (data.error || 'Não foi possível reservar') + '</span>';
+          await loadGifts();
+        }
+      }catch(e){
+        console.error(e);
+        giftMsg.innerHTML = '<span class="err">Erro de conexão.</span>';
+      }finally{
+        if (btnEl){ btnEl.disabled = false; btnEl.textContent = 'Reservar'; }
+      }
+    }
+    window.reserve = reserve;
+
+    // ----- RSVP -----
+    try{
+      rsvpForm.addEventListener('submit', async (ev)=>{
+        ev.preventDefault();
+        rsvpMsg.textContent = '';
+        rsvpBtn.disabled = true; rsvpBtn.textContent = 'Enviando…';
+
+        const required = ['name','email','attending'];
+        for (const n of required){
+          const el = rsvpForm.elements[n];
+          if (!el || !el.value){
+            rsvpMsg.innerHTML = '<span class="err">Preencha os campos obrigatórios.</span>';
+            el?.focus();
+            rsvpBtn.disabled = false; rsvpBtn.textContent = 'Enviar confirmação';
+            return;
+          }
+        }
+
+        try{
+          const fd = new FormData(rsvpForm); fd.append('action','rsvp');
+          const res = await fetch(API, { method:'POST', body:new URLSearchParams(fd), cache:'no-store', headers:{ 'Accept':'application/json' } });
+          const txt  = await res.text();
+
+          let data = null;
+          try{ data = JSON.parse(txt); }catch(e){
+            rsvpMsg.innerHTML = '<span class="err">Erro ao interpretar a resposta do RSVP.</span>';
+            console.warn('RSVP raw:', txt.slice(0,1000));
+            rsvpBtn.disabled = false; rsvpBtn.textContent = 'Enviar confirmação';
+            return;
+          }
+
+          if (data.ok){
+            rsvpMsg.innerHTML = '<span class="ok">RSVP enviado. Obrigado!</span>';
+            rsvpForm.reset();
+            document.querySelector('.nav a[href="#gifts"]')?.scrollIntoView({ behavior:'smooth', block:'center' });
+          } else {
+            rsvpMsg.innerHTML = '<span class="err">' + (data.error || 'Não foi possível enviar o RSVP.') + '</span>';
+          }
+        }catch(e){
+          console.error(e);
+          rsvpMsg.innerHTML = '<span class="err">Erro de conexão.</span>';
+        }finally{
+          rsvpBtn.disabled = false; rsvpBtn.textContent = 'Enviar confirmação';
+        }
+      });
+    }catch(e){ console.error('RSVP init error:', e); }
+
+    // ----- Observador de mudanças na lista (caso outros scripts insiram/editem descrições) -----
+    (function(){
+      const gifts = document.getElementById('giftsGrid');
+      if (!gifts) return;
+      const mo = new MutationObserver(muts => {
+        for (const m of muts) {
+          if (m.type === 'childList' && (m.addedNodes?.length || 0) > 0) {
+            m.addedNodes.forEach(node => {
+              if (node.nodeType === 1) enableTapToCopyOnDescriptions(node);
+            });
+          }
+          if (m.type === 'characterData') enableTapToCopyOnDescriptions(gifts);
+        }
+      });
+      mo.observe(gifts, { childList: true, subtree: true, characterData: true });
+    })();
+
+    // Carrega a lista ao abrir
+    loadGifts();
+  </script>
+</body>
+</html>
