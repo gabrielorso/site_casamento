@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nossa História · Ivana & Gabriel</title>
+  <link rel="stylesheet" href="casamento.css">
+  <style>
+    /* Reset & Variáveis de Cores Caramelo Sóbrio e Sofisticado (Ajustado) */
+    :root {
+      --primary-color: #3d2b1f;   /* Levemente mais escuro/frio */
+      --accent-color: #c48b62;    /* Caramelo sutilmente ajustado */
+      --orange-ampersand: #ff8b00; /* Sincronizado com o novo laranja/terracota */
+      --text-muted: #6e615a;      /* Sincronizado com o novo muted */
+      --bg-cream: #fdf6f0;        /* Sincronizado com o novo linen */
+      --border-color: #e8d5c4;    /* Sincronizado com o novo sand */
+    }
+    
+    body {
+      background-color: var(--bg-cream);
+      font-family: 'Times New Roman', Times, Georgia, serif;
+      color: #2b241f;
+      line-height: 1.55;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* O caractere "&" laranja */
+    .orange-amp {
+      color: var(--orange-ampersand) !important;
+      font-weight: normal;
+    }
+
+    /* Estrutura do Artigo */
+    .paper-container {
+      max-width: 850px;
+      margin: 3rem auto;
+      background: #ffffff;
+      padding: 3rem 4rem;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 24px rgba(74, 55, 40, 0.04);
+    }
+
+    /* Cabeçalho da Revista (Journal Header) */
+    .journal-header {
+      text-align: center;
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 0.8rem;
+      margin-bottom: 2.5rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      font-family: Arial, sans-serif;
+    }
+
+    .journal-header span {
+      font-weight: bold;
+      color: var(--accent-color);
+    }
+
+    /* Título e Autores */
+    .paper-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: normal;
+      margin: 0 0 1rem 0;
+      line-height: 1.25;
+      color: var(--primary-color);
+    }
+
+    .paper-authors {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      font-style: italic;
+    }
+
+    .paper-affiliation {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Resumo / Abstract */
+    .paper-abstract-box {
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.5rem 2rem;
+      margin-bottom: 2.5rem;
+      background: #fffcf9;
+    }
+
+    .paper-abstract-title {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    .paper-abstract-text {
+      font-size: 0.95rem;
+      text-align: justify;
+      margin: 0;
+      color: #3b332e;
+      line-height: 1.6;
+    }
+
+    .paper-keywords {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Layout de Colunas do Artigo */
+    .paper-body {
+      display: block;
+    }
+
+    @media (min-width: 768px) {
+      .paper-body {
+        column-count: 2;
+        column-gap: 2.5rem;
+        text-align: justify;
+      }
+    }
+
+    /* Estilo de Seções Científicas */
+    .paper-section {
+      margin-bottom: 1.8rem;
+    }
+
+    .paper-section h2 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 0 0 0.8rem 0;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.2rem;
+      color: var(--primary-color);
+      break-after: avoid;
+    }
+
+    .paper-section p {
+      font-size: 1rem;
+      text-indent: 1.5rem;
+      margin: 0 0 1rem 0;
+      text-align: justify;
+    }
+
+    /* Figuras com legendas acadêmicas */
+    .paper-figure {
+      break-inside: avoid;
+      margin: 1.5rem 0;
+      border: 1px solid var(--border-color);
+      padding: 6px;
+      background: #faf8f5;
+    }
+
+    .paper-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .paper-figure-caption {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      text-align: justify;
+      line-height: 1.4;
+      padding: 0 4px;
+    }
+
+    .paper-figure-caption strong {
+      color: var(--primary-color);
+    }
+
+    /* Tabela Acadêmica (Sem bordas verticais) */
+    .paper-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.85rem;
+      break-inside: avoid;
+    }
+
+    .paper-table th {
+      border-top: 2px solid var(--primary-color);
+      border-bottom: 1px solid var(--primary-color);
+      padding: 6px 8px;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    .paper-table td {
+      border-bottom: 1px solid var(--border-color);
+      padding: 6px 8px;
+    }
+
+    .paper-table tr:last-child td {
+      border-bottom: 2px solid var(--primary-color);
+    }
+
+    /* Referências Bibliográficas */
+    .paper-references {
+      margin-top: 2rem;
+      border-top: 1px solid var(--primary-color);
+      padding-top: 1rem;
+      break-inside: avoid;
+    }
+
+    .paper-references h3 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 0 0 1rem 0;
+      color: var(--primary-color);
+    }
+
+    .paper-references ol {
+      margin: 0;
+      padding-left: 1.2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .paper-references li {
+      margin-bottom: 0.6rem;
+      text-align: justify;
+    }
+
+    /* Integração do artigo ao cabeçalho padrão do site */
+    .paper-container {
+      width: min(850px, 100%);
+    }
+
+    .monogram img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    @media (max-width: 767px) {
+      .paper-container {
+        margin: 1.2rem auto 2rem;
+        padding: 1.5rem 1.1rem;
+      }
+
+      .paper-title {
+        font-size: 1.65rem;
+      }
+
+      .paper-abstract-box {
+        padding: 1.2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wedding-topbar">Nossa história · Ivana &amp; Gabriel</div>
+
+  <main class="content">
+    <header class="wedding-header">
+      <div class="monogram">
+        <img src="img/IG.png" alt="Monograma de Ivana e Gabriel">
+      </div>
+      <div class="wedding-header-text">
+        <p class="wedding-line1">Nossa trajetória</p>
+        <h1 class="wedding-line2">Ivana <span class="amp">&amp;</span> Gabriel</h1>
+        <p class="wedding-line3">Uma história de amor contada em formato de artigo científico.</p>
+      </div>
+    </header>
+
+    <nav class="casamento-nav" aria-label="Navegação principal do casamento">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="como-chegar.html">Como chegar</a></li>
+        <li><a class="active" href="historia.html" aria-current="page">Nossa História</a></li>
+        <li><a href="presentes.html">Lista de Presentes</a></li>
+      </ul>
+    </nav>
+
+    <article class="paper-container">
+    
+    <!-- Cabeçalho de Periódico Científico -->
+    <header class="journal-header">
+      Revista Brasileira de Matrimônios Avançados · Vol. 1 · Nº 1 · <span>Bahia 2026</span>
+    </header>
+
+    <!-- Cabeçalho do Artigo -->
+    <h1 class="paper-title">
+      Análise de Coesão de Longo Prazo e Sinergia Matrimonial:<br>
+      A História de Ivana <span class="orange-amp">&amp;</span> Gabriel
+    </h1>
+    
+    <div class="paper-authors">
+      Ivana A.D.<sup>1</sup> <span class="orange-amp">&amp;</span> Gabriel A.O.<sup>2</sup>
+    </div>
+    
+    <div class="paper-affiliation">
+      <sup>1</sup>Cruz das Almas, Bahia<br>
+      <sup>2</sup>São Miguel do Oeste, Santa Catarina
+    </div>
+    <!-- Abstract / Resumo -->
+    <section class="paper-abstract-box">
+      <div class="paper-abstract-title">Resumo</div>
+      <p class="paper-abstract-text">
+        Este estudo investiga a dinâmica afetiva e a evolução do relacionamento interpessoal entre os sujeitos Ivana (S1) e Gabriel (S2) ao longo de um período observacional de aproximadamente seis anos. Analisamos os marcos estruturais de sua trajetória, iniciando pela atração inicial (fase de indução), passando pelo teste de resiliência em viagens (fase experimental) e culminando na consolidação da aliança (fase de validação). Os resultados empíricos mostram um índice de compatibilidade estatisticamente significativo (p < 0.001), sugerindo que a união planejada para setembro de 2026, no litoral da Bahia, apresenta elevado potencial de estabilidade e felicidade mútua a longo prazo.
+      </p>
+      <div class="paper-keywords">
+        <strong>Palavras-chave:</strong> Amor; Casamento; Bahia; Compatibilidade Estocástica; Final Feliz.
+      </div>
+    </section>
+
+    <!-- Corpo do Artigo em Duas Colunas -->
+    <div class="paper-body">
+      
+      <section class="paper-section">
+        <h2>1. Introdução</h2>
+        <p>
+          O estudo da união de dois sistemas complexos de afinidade tem sido amplamente debatido na literatura romântica. O ponto inicial de observação deste caso de estudo ocorreu em outubro de 2020.
+        </p>
+        <p>
+          O que se iniciou com uma amostra casual (um café ao fim da tarde) rapidamente convergiu para um alinhamento mútuo de valores, preferências musicais e, notadamente, o mesmo senso de humor. Os dados preliminares apontaram de imediato para uma atração recíproca de alta intensidade.
+        </p>
+      </section>
+
+      <section class="paper-section">
+        <h2>2. Metodologia de Convivência</h2>
+        <p>
+          Para validar a hipótese de durabilidade do laço afetivo, os sujeitos foram submetidos a diversos cenários experimentais de convivência. O principal teste de estresse envolveu deslocamentos geográficos frequentes (viagens).
+        </p>
+        <p>
+          A Tabela 1 sintetiza as principais variáveis observadas durante o teste de campo em julho de 2022, evidenciando uma sintonia excepcional sob condições de variabilidade externa.
+        </p>
+
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Parâmetro</th>
+              <th>S1 (Ivana)</th>
+              <th>S2 (Gabriel)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Foco no roteiro</td>
+              <td>Excelente</td>
+              <td>Adaptativo</td>
+            </tr>
+            <tr>
+              <td>Paciência em atrasos</td>
+              <td>Alta</td>
+              <td>Inabalável</td>
+            </tr>
+            <tr>
+              <td>Sintonia em fotos</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="paper-section">
+        <h2>3. Resultados <span class="orange-amp">&amp;</span> Discussão</h2>
+        <p>
+          Após anos de observações empíricas consistentes, a fase de validação formal ocorreu em novembro de 2024. Sob condições ambientais favoráveis (brisa marinha e pôr do sol), o sujeito Gabriel propôs a formalização da união estável.
+        </p>
+
+        <div class="paper-figure">
+          <img src="https://picsum.photos/id/299/600/400" alt="Registro fotográfico do pedido de casamento">
+          <div class="paper-figure-caption">
+            <strong>Figura 1.</strong> Registro fotográfico do momento da proposta, demonstrando alto índice de emoção (e ausência total de hesitação no "Sim").
+          </div>
+        </div>
+
+        <p>
+          O resultado foi um "Sim" absoluto e sem variância. A análise espectral do evento confirmou que ambos os sujeitos compartilhavam a mesma frequência emocional, garantindo a transição de namorados para noivos.
+        </p>
+      </section>
+
+      <section class="paper-section">
+        <h2>4. Conclusão <span class="orange-amp">&amp;</span> Trabalhos Futuros</h2>
+        <p>
+          Este estudo conclui que a colisão gravitacional de Ivana <span class="orange-amp">&amp;</span> Gabriel resultou em uma órbita estável e harmoniosa. 
+        </p>
+        <p>
+          Como próximos passos, os autores planejam um evento de celebração em larga escala em setembro de 2026. O experimento será conduzido à beira-mar, no cenário paradisíaco da Bahia, onde a hipótese do "felizes para sempre" será testada e celebrada junto com os convidados (co-autores deste dia especial).
+        </p>
+      </section>
+
+      <!-- Referências Bibliográficas (Linha do Tempo) -->
+      <section class="paper-references">
+        <h3>Referências</h3>
+        <ol>
+          <li>IVANA, S.; GABRIEL, F. <em>O Encontro Inesperado: Análise do Café de Outubro</em>. Ed. Destino, v. 1, 2020.</li>
+          <li>COOPERAÇÃO, M. <em>A Primeira Viagem Juntos e Seus Impactos no Companheirismo</em>. Journal of Love and Travel, v. 14, 2022.</li>
+          <li>DECISÃO, A. <em>O Pedido à Beira-Mar: Transição Faseada de Noivos a Casados</em>. Anais do Romantismo Prático, 2024.</li>
+          <li>CELEBRAÇÃO, G. <em>Metodologia de Festa e Alegria na Bahia</em>. Revista de Eventos Memoráveis, set. 2026.</li>
+        </ol>
+      </section>
+
+    </div>
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <span>Ivana <span class="orange-amp">&amp;</span> Gabriel</span>
+    <span>Nossa História</span>
+  </footer>
+</body>
+</html>

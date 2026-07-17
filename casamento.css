@@ -1,17 +1,18 @@
 :root {
-  --linen: #fff8ee;
-  --paper: #fffdf7;
-  --sand: #f6dfbd;
-  --orange: #f47a20;
-  --coral: #e95f59;
-  --pink: #d94f8c;
-  --leaf: #9cab55;
-  --leaf-dark: #5e6f35;
-  --sky: #bde7e7;
-  --ink: #33261f;
-  --muted: #76675e;
-  --border: rgba(220, 121, 58, 0.28);
-  --shadow: rgba(94, 76, 55, 0.10);
+  --linen: #fdf6f0;
+  --paper: #fffbf9;
+  --sand: #e8d5c4;
+  --orange: #d16b49;
+  --ampcolor: #ff8b00;
+  --coral: #d97368;
+  --pink: #b85c7b;
+  --leaf: #829379;
+  --leaf-dark: #4b5944;
+  --sky: #a8c4c7;
+  --ink: #2c2421;
+  --muted: #6e615a;
+  --border: rgba(209, 107, 73, 0.25);
+  --shadow: rgba(44, 36, 33, 0.08);
 }
 
 * {
@@ -25,9 +26,9 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top left, rgba(244, 122, 32, 0.12), transparent 30rem),
-    radial-gradient(circle at top right, rgba(217, 79, 140, 0.12), transparent 30rem),
-    linear-gradient(180deg, #fffaf1 0%, #fef6ec 48%, #fff8ee 100%);
+    radial-gradient(circle at top left, rgba(209, 107, 73, 0.12), transparent 30rem),
+    radial-gradient(circle at top right, rgba(184, 92, 123, 0.12), transparent 30rem),
+    linear-gradient(180deg, #fdf8f5 0%, #fbf0ea 48%, #fdf6f0 100%);
   color: var(--ink);
   font-family: Georgia, "Times New Roman", serif;
   line-height: 1.65;
@@ -40,8 +41,8 @@ body::before {
   pointer-events: none;
   opacity: 0.42;
   background-image:
-    linear-gradient(90deg, rgba(94, 76, 55, 0.035) 1px, transparent 1px),
-    linear-gradient(rgba(94, 76, 55, 0.035) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(60, 50, 45, 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(60, 50, 45, 0.035) 1px, transparent 1px);
   background-size: 18px 18px;
 }
 
@@ -70,11 +71,11 @@ main.content {
   gap: 1.3rem;
   align-items: center;
   background:
-    linear-gradient(135deg, rgba(255,255,255,0.92), rgba(255, 248, 238, 0.92)),
-    linear-gradient(90deg, rgba(189,231,231,0.55), rgba(246,223,189,0.30));
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(253, 246, 240, 0.92)),
+    linear-gradient(90deg, rgba(168, 196, 199, 0.55), rgba(232, 213, 196, 0.30));
   border: 1px solid var(--border);
   border-top: 7px solid var(--orange);
-  border-bottom: 2px solid rgba(217, 79, 140, 0.40);
+  border-bottom: 2px solid rgba(184, 92, 123, 0.40);
   border-radius: 26px;
   padding: 1.45rem 1.55rem;
   margin: 0 auto 1.2rem auto;
@@ -90,9 +91,9 @@ main.content {
   height: 18rem;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 30% 30%, rgba(217, 79, 140, 0.22), transparent 31%),
-    radial-gradient(circle at 65% 35%, rgba(244, 122, 32, 0.18), transparent 31%),
-    radial-gradient(circle at 48% 70%, rgba(156, 171, 85, 0.20), transparent 35%);
+    radial-gradient(circle at 30% 30%, rgba(184, 92, 123, 0.22), transparent 31%),
+    radial-gradient(circle at 65% 35%, rgba(209, 107, 73, 0.18), transparent 31%),
+    radial-gradient(circle at 48% 70%, rgba(130, 147, 121, 0.20), transparent 35%);
 }
 
 .monogram {
@@ -100,15 +101,21 @@ main.content {
   z-index: 1;
   width: 118px;
   height: 118px;
-  border-radius: 50%;
   display: grid;
   place-items: center;
-  border: 3px solid var(--orange);
-  background: rgba(255, 253, 247, 0.82);
-  color: var(--orange);
-  font-size: 2.15rem;
-  font-weight: 700;
-  box-shadow: inset 0 0 0 8px rgba(244, 122, 32, 0.06);
+
+  /* A própria imagem já possui o círculo */
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.monogram img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .monogram span {
@@ -138,7 +145,7 @@ main.content {
 }
 
 .wedding-line2 .amp {
-  color: var(--orange);
+  color: var(--ampcolor);
   font-size: 1.12em;
 }
 
@@ -152,14 +159,14 @@ main.content {
   position: sticky;
   top: 0.75rem;
   z-index: 10;
-  background: rgba(255, 253, 247, 0.88);
+  background: rgba(255, 251, 249, 0.88);
   backdrop-filter: blur(10px);
   border: 1px solid var(--border);
   border-top: 3px solid var(--pink);
   border-radius: 18px;
   padding: 0.7rem 0.85rem;
   margin-bottom: 1.4rem;
-  box-shadow: 0 10px 28px rgba(94, 76, 55, 0.08);
+  box-shadow: 0 10px 28px rgba(60, 50, 45, 0.08);
 }
 
 .casamento-nav ul {
@@ -175,8 +182,8 @@ main.content {
   display: inline-block;
   text-decoration: none;
   color: var(--ink);
-  background: rgba(255,255,255,0.78);
-  border: 1px solid rgba(217, 79, 140, 0.18);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(184, 92, 123, 0.18);
   border-radius: 999px;
   padding: 0.5rem 0.92rem;
   font-weight: 700;
@@ -185,15 +192,16 @@ main.content {
 
 .casamento-nav a:hover {
   transform: translateY(-1px);
-  background: rgba(246, 223, 189, 0.45);
-  border-color: rgba(244, 122, 32, 0.50);
+  background: rgba(232, 213, 196, 0.45);
+  border-color: rgba(209, 107, 73, 0.50);
   color: var(--orange);
 }
 
 .casamento-nav a.active {
-  background: linear-gradient(135deg, var(--orange), var(--pink));
-  border-color: transparent;
-  color: #fff;
+  background: rgba(246, 223, 189, 0.58);
+  border-color: rgba(244, 122, 32, 0.65);
+  color: var(--orange);
+  box-shadow: 0 4px 12px rgba(94, 76, 55, 0.08);
 }
 
 .hero-panel,
@@ -203,10 +211,10 @@ main.content {
 .event-block,
 .place-card,
 .rsvp-card {
-  background: rgba(255, 253, 247, 0.87);
+  background: rgba(255, 251, 249, 0.87);
   border: 1px solid var(--border);
   border-radius: 22px;
-  box-shadow: 0 14px 35px rgba(94, 76, 55, 0.07);
+  box-shadow: 0 14px 35px rgba(60, 50, 45, 0.07);
 }
 
 .hero-panel {
@@ -222,7 +230,7 @@ main.content {
   position: absolute;
   right: 1.1rem;
   top: 0.7rem;
-  color: rgba(217, 79, 140, 0.24);
+  color: rgba(184, 92, 123, 0.24);
   font-size: 3.5rem;
   line-height: 1;
 }
@@ -266,7 +274,7 @@ main.content {
 
 .highlight-item {
   border-left: 4px solid var(--orange);
-  background: rgba(246, 223, 189, 0.30);
+  background: rgba(232, 213, 196, 0.30);
   border-radius: 14px;
   padding: 0.85rem 0.95rem;
 }
@@ -303,7 +311,7 @@ main.content {
   height: 100%;
   position: relative;
   overflow: hidden;
-  background: rgba(255, 253, 247, 0.92);
+  background: rgba(255, 251, 249, 0.92);
   border: 1px solid var(--border);
   border-top: 4px solid var(--orange);
   border-radius: 20px;
@@ -319,13 +327,13 @@ main.content {
   width: 5.8rem;
   height: 5.8rem;
   border-radius: 50%;
-  background: rgba(189, 231, 231, 0.40);
+  background: rgba(168, 196, 199, 0.40);
 }
 
 .page-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 18px 38px rgba(94, 76, 55, 0.12);
-  border-color: rgba(217, 79, 140, 0.42);
+  box-shadow: 0 18px 38px rgba(60, 50, 45, 0.12);
+  border-color: rgba(184, 92, 123, 0.42);
 }
 
 .page-card h3 {
@@ -366,7 +374,7 @@ main.content {
 }
 
 .event-date {
-  background: linear-gradient(180deg, rgba(244, 122, 32, 0.13), rgba(217, 79, 140, 0.08));
+  background: linear-gradient(180deg, rgba(209, 107, 73, 0.13), rgba(184, 92, 123, 0.08));
   padding: 1rem;
   font-weight: 800;
   color: var(--orange);
@@ -439,13 +447,13 @@ main.content {
 .primary-button {
   background: linear-gradient(135deg, var(--orange), var(--pink));
   color: #fff;
-  box-shadow: 0 12px 24px rgba(244, 122, 32, 0.20);
+  box-shadow: 0 12px 24px rgba(209, 107, 73, 0.20);
 }
 
 .secondary-button {
   color: var(--orange);
-  border: 1px solid rgba(244, 122, 32, 0.40);
-  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(209, 107, 73, 0.40);
+  background: rgba(255, 255, 255, 0.72);
 }
 
 .rsvp-card {
@@ -499,7 +507,7 @@ main.content {
   border-radius: 14px;
   padding: 0.75rem 0.85rem;
   font: inherit;
-  background: rgba(255,255,255,0.78);
+  background: rgba(255, 255, 255, 0.78);
   color: var(--ink);
 }
 
@@ -536,9 +544,9 @@ small,
   }
 
   .monogram {
+    width: 100px;
+    height: 100px;
     margin: 0 auto;
-    width: 98px;
-    height: 98px;
   }
 
   .casamento-nav {
@@ -564,7 +572,6 @@ small,
   }
 }
 
-
 /* Página de presentes */
 .gifts-intro {
   overflow: hidden;
@@ -576,7 +583,7 @@ small,
   width: min(560px, 100%);
   margin-top: 1rem;
   padding: 0.95rem 1.05rem;
-  border: 1px dashed rgba(244, 122, 32, 0.65);
+  border: 1px dashed rgba(209, 107, 73, 0.65);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.72);
   cursor: pointer;
@@ -605,117 +612,26 @@ small,
 }
 
 .gift-card {
-  overflow: hidden;
-  display: grid;
-  grid-template-rows: 118px 1fr;
-  background: rgba(255, 253, 247, 0.92);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  box-shadow: 0 14px 35px rgba(94, 76, 55, 0.07);
+  grid-template-rows: auto 1fr;
 }
 
-.gift-photo {
-  display: grid;
-  place-items: center;
-  min-height: 118px;
-  font-size: 3rem;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.75), transparent 32%),
-    linear-gradient(135deg, rgba(189,231,231,0.50), rgba(246,223,189,0.50));
+.gift-photo,
+.gift-photo.has-image {
+  min-height: 0;
+  aspect-ratio: 4 / 3;
 }
 
-.gift-viagem { background: linear-gradient(135deg, rgba(189,231,231,0.72), rgba(156,171,85,0.28)); }
-.gift-boleto { background: linear-gradient(135deg, rgba(246,223,189,0.70), rgba(244,122,32,0.18)); }
-.gift-bahia { background: linear-gradient(135deg, rgba(217,79,140,0.22), rgba(244,122,32,0.22)); }
-.gift-casa { background: linear-gradient(135deg, rgba(255,255,255,0.80), rgba(246,223,189,0.55)); }
-.gift-cafe { background: linear-gradient(135deg, rgba(246,223,189,0.62), rgba(189,231,231,0.36)); }
-.gift-limpeza { background: linear-gradient(135deg, rgba(189,231,231,0.66), rgba(217,79,140,0.16)); }
-.gift-jantar { background: linear-gradient(135deg, rgba(244,122,32,0.19), rgba(217,79,140,0.22)); }
-.gift-livre { background: linear-gradient(135deg, rgba(255,248,238,0.85), rgba(156,171,85,0.26)); }
-
-.gift-content {
-  padding: 0.95rem 1rem 1.05rem;
-}
-
-.gift-content h3 {
-  margin: 0.22rem 0 0.35rem;
-  font-size: 1.1rem;
-  line-height: 1.22;
-}
-
-.gift-content p {
-  margin: 0 0 0.75rem;
-  color: var(--muted);
-  min-height: 3.1rem;
-}
-
-.gift-price {
-  display: block;
-  color: var(--orange);
-  font-size: 1.05rem;
-  margin-bottom: 0.8rem;
-}
-
-.gift-button {
+.gift-photo.has-image img {
   width: 100%;
-  border: 0;
-  border-radius: 999px;
-  padding: 0.72rem 1rem;
-  background: linear-gradient(135deg, var(--orange), var(--pink));
-  color: #fff;
-  font: inherit;
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow: 0 12px 24px rgba(244, 122, 32, 0.16);
-  transition: transform .15s ease, filter .15s ease;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
 }
 
-.gift-button:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.03);
-}
-
-#copy-toast {
-  position: fixed;
-  left: 50%;
-  bottom: 24px;
-  z-index: 9999;
-  transform: translateX(-50%) translateY(12px);
-  pointer-events: none;
-  opacity: 0;
-  padding: 0.72rem 1rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--orange), var(--pink));
-  color: #fff;
-  font-weight: 800;
-  box-shadow: 0 18px 36px rgba(94, 76, 55, 0.20);
-  transition: opacity .18s ease, transform .18s ease;
-}
-
-#copy-toast.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.copyable {
-  -webkit-tap-highlight-color: transparent;
-}
-
-@media (max-width: 520px) {
-  .gifts-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .gift-card {
-    grid-template-rows: 92px 1fr;
-  }
-
-  .gift-photo {
-    min-height: 92px;
-    font-size: 2.55rem;
-  }
-
-  .gift-content p {
-    min-height: auto;
-  }
-}
+.gift-viagem { background: linear-gradient(135deg, rgba(168, 196, 199, 0.72), rgba(130, 147, 121, 0.28)); }
+.gift-boleto { background: linear-gradient(135deg, rgba(232, 213, 196, 0.70), rgba(209, 107, 73, 0.18)); }
+.gift-bahia { background: linear-gradient(135deg, rgba(184, 92, 123, 0.22), rgba(209, 107, 73, 0.22)); }
+.gift-casa { background: linear-gradient(135deg, rgba(255, 255, 255, 0.80), rgba(232, 213, 196, 0.55)); }
+.gift-cafe { background: linear-gradient(135deg, rgba(232, 213, 196, 0.62), rgba(168, 196, 199, 0.36)); }
+.gift-limpeza { background: linear-gradient(135deg, rgba(168, 196, 199, 0.66), rgba(184, 92, 123, 0.16)); }
