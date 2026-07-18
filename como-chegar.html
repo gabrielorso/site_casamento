@@ -3,97 +3,814 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Como chegar · Ivana & Gabriel</title>
-  <link rel="stylesheet" href="casamento.css">
-</head>
-<body>
-  <div class="wedding-topbar">Praia de Tairu · Vera Cruz - BA</div>
 
+  <title>Como chegar · Ivana &amp; Gabriel</title>
+
+  <link rel="stylesheet" href="casamento.css">
+
+  <style>
+    /* =========================================================
+       COMO CHEGAR — VISUAL TROPICAL EDITORIAL
+       Regras limitadas à página .directions-page.
+       ========================================================= */
+
+    .directions-page {
+      --directions-green: #5d704b;
+      --directions-green-soft: #eef0e7;
+      --directions-coral: #d86870;
+      --directions-orange: #f56c09;
+      --directions-paper: rgba(255, 253, 249, 0.96);
+      --directions-border: rgba(181, 145, 105, 0.30);
+    }
+
+    .directions-page .casamento-nav a.active::after {
+      content: "❧";
+    }
+
+    /* Abertura */
+
+    .directions-page .directions-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 390px;
+      display: grid;
+      place-content: center;
+      margin-bottom: 2rem;
+      padding: clamp(2.5rem, 6vw, 5rem) clamp(1.4rem, 5vw, 4rem);
+      border: 1px solid var(--directions-border);
+      border-radius: 25px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255, 253, 249, 0.985),
+          rgba(255, 250, 244, 0.95)
+        );
+      box-shadow: 0 17px 45px rgba(74, 57, 44, 0.08);
+      text-align: center;
+    }
+
+    .directions-page .directions-hero::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -4.5rem;
+      right: -3rem;
+      width: min(44%, 480px);
+      height: min(82%, 430px);
+      opacity: 0.60;
+      background:
+        url("img/folhas-direita.png")
+        top right / contain
+        no-repeat;
+      pointer-events: none;
+    }
+
+    .directions-page .directions-hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: -2.5rem;
+      bottom: -2.6rem;
+      width: min(30%, 320px);
+      height: min(58%, 320px);
+      opacity: 0.64;
+      background:
+        url("img/flores-inferior-esquerdo.png")
+        bottom left / contain
+        no-repeat;
+      pointer-events: none;
+    }
+
+    .directions-page .directions-hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .directions-page .directions-hero .eyebrow {
+      display: flex;
+      width: max-content;
+      max-width: 100%;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      margin: 0 auto 0.8rem;
+      color: var(--directions-coral);
+      font-size: 0.86rem;
+      letter-spacing: 0.19em;
+    }
+
+    .directions-page .directions-hero .eyebrow::after {
+      content: "";
+      width: 30px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.7;
+    }
+
+    .directions-page .directions-hero h1 {
+      width: 100%;
+      max-width: 920px;
+      margin: 0 auto 1.15rem;
+      font-family:
+        Baskerville,
+        "Palatino Linotype",
+        "Book Antiqua",
+        Georgia,
+        serif;
+      font-size: clamp(3rem, 7vw, 5.25rem);
+      line-height: 0.98;
+      font-weight: 500;
+      letter-spacing: -0.038em;
+      text-align: center;
+    }
+
+    .directions-page .directions-hero .lead {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      color: #514842;
+      font-size: clamp(1rem, 2vw, 1.16rem);
+      line-height: 1.66;
+      text-align: center;
+    }
+
+    /* Cabeçalhos das seções */
+
+    .directions-page .directions-section {
+      position: relative;
+      isolation: isolate;
+      margin-bottom: 2rem;
+    }
+
+    .directions-page .directions-section::before,
+    .directions-page .directions-section::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 170px;
+      height: 235px;
+      top: 2.8rem;
+      opacity: 0.24;
+      pointer-events: none;
+      background:
+        url("img/folhas-inferior-esquerdo.png")
+        center / contain
+        no-repeat;
+    }
+
+    .directions-page .directions-section::before {
+      left: -5.5rem;
+    }
+
+    .directions-page .directions-section::after {
+      right: -5.5rem;
+      transform: scaleX(-1);
+    }
+
+    .directions-page .directions-heading {
+      max-width: 800px;
+      margin: 0 auto 1.65rem;
+      text-align: center;
+    }
+
+    .directions-page .directions-heading img {
+      display: block;
+      width: 54px;
+      height: 30px;
+      margin: 0 auto 0.25rem;
+      object-fit: contain;
+    }
+
+    .directions-page .directions-heading .eyebrow {
+      margin-bottom: 0.4rem;
+      color: var(--directions-coral);
+    }
+
+    .directions-page .directions-heading h2 {
+      margin: 0;
+      font-family:
+        Baskerville,
+        "Palatino Linotype",
+        "Book Antiqua",
+        Georgia,
+        serif;
+      font-size: clamp(2.35rem, 4.7vw, 3.6rem);
+      line-height: 1.05;
+      font-weight: 500;
+      letter-spacing: -0.025em;
+    }
+
+    .directions-page .directions-heading p {
+      max-width: 680px;
+      margin: 0.5rem auto 0;
+      color: #6f625b;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    /* Hospedagem */
+
+    .directions-page .lodging-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.15rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .directions-page .lodging-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 350px;
+      display: flex;
+      flex-direction: column;
+      padding: 1.45rem;
+      border: 1px solid var(--directions-border);
+      border-radius: 23px;
+      background: var(--directions-paper);
+      box-shadow: 0 13px 32px rgba(74, 57, 44, 0.07);
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+    }
+
+    .directions-page .lodging-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(216, 104, 112, 0.42);
+      box-shadow: 0 20px 42px rgba(74, 57, 44, 0.12);
+    }
+
+    .directions-page .lodging-card::after {
+      content: "";
+      position: absolute;
+      right: -1.7rem;
+      bottom: -1.9rem;
+      width: 180px;
+      height: 165px;
+      opacity: 0.20;
+      background:
+        url("img/flores-inferior-esquerdo.png")
+        center / contain
+        no-repeat;
+      pointer-events: none;
+    }
+
+    .directions-page .lodging-card:nth-child(2)::after {
+      transform: scaleX(-1);
+    }
+
+    .directions-page .lodging-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 0.85rem;
+      border-radius: 50%;
+      background: var(--directions-green-soft);
+      color: var(--directions-green);
+    }
+
+    .directions-page .lodging-card:nth-child(2) .lodging-icon {
+      background: rgba(250, 232, 232, 0.88);
+      color: var(--directions-coral);
+    }
+
+    .directions-page .lodging-icon svg {
+      width: 29px;
+      height: 29px;
+      stroke-width: 1.7;
+    }
+
+    .directions-page .lodging-card .card-label {
+      position: relative;
+      z-index: 1;
+      color: var(--directions-green);
+      font-size: 0.73rem;
+      letter-spacing: 0.15em;
+    }
+
+    .directions-page .lodging-card:nth-child(2) .card-label {
+      color: var(--directions-coral);
+    }
+
+    .directions-page .lodging-card h3 {
+      position: relative;
+      z-index: 1;
+      margin: 0.3rem 0 0.65rem;
+      font-size: 1.45rem;
+      line-height: 1.2;
+      font-weight: 500;
+    }
+
+    .directions-page .lodging-card p {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 0.7rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .directions-page .lodging-card .button-row {
+      position: relative;
+      z-index: 2;
+      margin-top: auto;
+      padding-top: 0.6rem;
+    }
+
+    .directions-page .map-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      border: 0;
+      border-radius: 999px;
+      padding: 0.72rem 1rem;
+      background:
+        linear-gradient(
+          135deg,
+          #ff7900,
+          #f65b0a
+        );
+      color: #fff;
+      box-shadow: 0 11px 22px rgba(245, 108, 9, 0.20);
+      text-decoration: none;
+      font-weight: 700;
+      transition:
+        transform 0.16s ease,
+        box-shadow 0.16s ease;
+    }
+
+    .directions-page .map-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(245, 108, 9, 0.27);
+    }
+
+    /* Rotas */
+
+    .directions-page .routes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.1rem;
+    }
+
+    .directions-page .route-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 305px;
+      padding: 1.35rem;
+      border: 1px solid var(--directions-border);
+      border-radius: 22px;
+      background: var(--directions-paper);
+      box-shadow: 0 13px 32px rgba(74, 57, 44, 0.07);
+    }
+
+    .directions-page .route-card:nth-child(1) {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(238, 240, 231, 0.72),
+          rgba(255, 253, 249, 0.97) 58%
+        );
+    }
+
+    .directions-page .route-card:nth-child(2) {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(250, 232, 232, 0.62),
+          rgba(255, 253, 249, 0.97) 58%
+        );
+    }
+
+    .directions-page .route-card:nth-child(3) {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(250, 242, 229, 0.76),
+          rgba(255, 253, 249, 0.97) 58%
+        );
+    }
+
+    .directions-page .route-card::after {
+      content: "";
+      position: absolute;
+      right: -1.2rem;
+      bottom: -1.7rem;
+      width: 125px;
+      height: 100px;
+      opacity: 0.12;
+      background:
+        url("img/flor-centro.png")
+        center / contain
+        no-repeat;
+      pointer-events: none;
+    }
+
+    .directions-page .route-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .directions-page .route-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(238, 240, 231, 0.92);
+      color: var(--directions-green);
+    }
+
+    .directions-page .route-card:nth-child(2) .route-icon {
+      background: rgba(250, 232, 232, 0.92);
+      color: var(--directions-coral);
+    }
+
+    .directions-page .route-card:nth-child(3) .route-icon {
+      background: rgba(255, 236, 218, 0.92);
+      color: var(--directions-orange);
+    }
+
+    .directions-page .route-icon svg {
+      width: 27px;
+      height: 27px;
+      stroke-width: 1.7;
+    }
+
+    .directions-page .route-number {
+      color: rgba(75, 89, 68, 0.52);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+    }
+
+    .directions-page .route-card h3 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 0.65rem;
+      font-size: 1.28rem;
+      line-height: 1.2;
+      font-weight: 500;
+    }
+
+    .directions-page .route-card p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.58;
+    }
+
+    .directions-page .route-time {
+      display: block;
+      margin-top: 0.75rem;
+      color: var(--directions-green);
+      font-weight: 700;
+    }
+
+    .directions-page .route-card:nth-child(2) .route-time {
+      color: var(--directions-coral);
+    }
+
+    .directions-page .route-card:nth-child(3) .route-time {
+      color: var(--directions-orange);
+    }
+
+    .directions-page .travel-note {
+      position: relative;
+      overflow: hidden;
+      max-width: 900px;
+      margin: 1.4rem auto 0;
+      padding: 1.15rem 1.35rem;
+      border: 1px solid var(--directions-border);
+      border-left: 5px solid var(--directions-green);
+      border-radius: 18px;
+      background: rgba(255, 253, 249, 0.92);
+      box-shadow: 0 10px 25px rgba(74, 57, 44, 0.05);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .directions-page .travel-note strong {
+      color: var(--directions-green);
+    }
+
+    @media (max-width: 900px) {
+      .directions-page .routes-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .directions-page .route-card:last-child {
+        grid-column: 1 / -1;
+        max-width: 520px;
+        width: 100%;
+        justify-self: center;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .directions-page .directions-hero {
+        min-height: 0;
+        padding: 2.1rem 1.25rem 2.6rem;
+      }
+
+      .directions-page .directions-hero::before {
+        width: 58%;
+        height: 52%;
+        top: -1.7rem;
+        right: -4rem;
+        opacity: 0.25;
+      }
+
+      .directions-page .directions-hero::after {
+        width: 44%;
+        height: 34%;
+        left: -3rem;
+        bottom: -1.5rem;
+        opacity: 0.31;
+      }
+
+      .directions-page .directions-section::before,
+      .directions-page .directions-section::after {
+        display: none;
+      }
+
+      .directions-page .lodging-grid,
+      .directions-page .routes-grid {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+        margin-inline: auto;
+      }
+
+      .directions-page .route-card:last-child {
+        grid-column: auto;
+      }
+
+      .directions-page .lodging-card,
+      .directions-page .route-card {
+        min-height: 0;
+      }
+    }
+  </style>
+</head>
+
+<body class="home-page directions-page">
   <main class="content">
     <header class="wedding-header">
-      <div class="monogram"><img src="img/IG.png" alt="Monograma de Ivana e Gabriel"></div>
+      <div class="monogram">
+        <img
+          src="img/IG.png"
+          alt="Monograma de Ivana e Gabriel"
+        >
+      </div>
+
       <div class="wedding-header-text">
-        <p class="wedding-line1">Hospedagem e deslocamento</p>
-        <h1 class="wedding-line2">Como chegar</h1>
-        <p class="wedding-line3">Sugestões para chegar ao local do casamento a partir de Salvador.</p>
+        <p class="wedding-line1">Praia de Tairu · Bahia</p>
+
+        <h1 class="wedding-line2">
+          Ivana <span class="amp">&amp;</span> Gabriel
+        </h1>
+
+        <p class="wedding-line3">
+          Um fim de semana para celebrar o amor, a família e os amigos à beira-mar.
+        </p>
       </div>
     </header>
 
-    <nav class="casamento-nav" aria-label="Navegação principal do casamento">
+    <nav
+      class="casamento-nav"
+      aria-label="Navegação principal do casamento"
+    >
       <ul>
         <li><a href="index.html">Início</a></li>
-        <!--
-        <li><a href="https://gabrielorso.shinyapps.io/Confirmacao" target="_blank" rel="noopener">Confirmar presença</a></li>
-        -->
-        <li><a class="active" href="como-chegar.html">Como chegar</a></li>
+
+        <li>
+          <a class="active" href="como-chegar.html">
+            Como chegar
+          </a>
+        </li>
+
         <li><a href="historia.html">Nossa História</a></li>
         <li><a href="presentes.html">Lista de Presentes</a></li>
       </ul>
     </nav>
 
-    <section class="content-box">
-      <p class="eyebrow">Sugestão de hospedagem</p>
-      <h1>Onde ficar</h1>
-      <div class="place-grid">
-        <article class="place-card">
+    <section class="directions-hero">
+      <p class="eyebrow">Sua chegada à Bahia</p>
+
+      <h1>Como chegar</h1>
+
+      <p class="lead">
+        Reunimos as principais informações de hospedagem e os trajetos
+        sugeridos para chegar à Praia de Tairu com tranquilidade.
+      </p>
+    </section>
+
+    <section
+      class="directions-section"
+      aria-labelledby="onde-ficar"
+    >
+      <div class="directions-heading">
+        <img
+          src="img/flor-centro.png"
+          alt=""
+          aria-hidden="true"
+        >
+
+        <p class="eyebrow">Sugestões de hospedagem</p>
+
+        <h2 id="onde-ficar">Onde ficar</h2>
+
+        <p>
+          Duas opções próximas ao casamento para aproveitar o fim de semana
+          com mais conforto e praticidade.
+        </p>
+      </div>
+
+      <div class="lodging-grid">
+        <article class="lodging-card">
+          <span class="lodging-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor">
+              <path d="M9 38V20l15-11 15 11v18"></path>
+              <path d="M16 38V27h16v11M20 20h8"></path>
+            </svg>
+          </span>
+
           <span class="card-label">Local do casamento</span>
+
           <h3>Alma Tropical Mini Resort</h3>
-          <p>Rodovia Tairu Cacha Pregos, KM 0,2 - Tairu, Vera Cruz - BA.</p>
-          <p>Recomendado para quem deseja se hospedar no próprio local do evento, com mais comodidade e proximidade de toda a programação.</p>
+
+          <p>
+            Rodovia Tairu Cacha Pregos, KM 0,2 — Tairu, Vera Cruz — BA.
+          </p>
+
+          <p>
+            Recomendado para quem deseja se hospedar no próprio local do evento,
+            com mais comodidade e proximidade de toda a programação.
+          </p>
+
           <div class="button-row">
-            <a class="secondary-button" href="https://www.google.com/maps/search/?api=1&query=Alma%20Tropical%20Mini%20Resort%20Tairu%20Vera%20Cruz%20BA" target="_blank" rel="noopener">Abrir no mapa</a>
+            <a
+              class="map-button"
+              href="https://www.google.com/maps/search/?api=1&query=Alma%20Tropical%20Mini%20Resort%20Tairu%20Vera%20Cruz%20BA"
+              target="_blank"
+              rel="noopener"
+            >
+              Abrir no mapa →
+            </a>
           </div>
         </article>
 
-        <article class="place-card">
+        <article class="lodging-card">
+          <span class="lodging-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor">
+              <path d="M10 39h28M14 39V22h20v17M18 22v-7h12v7"></path>
+              <path d="M20 29h8M20 34h8"></path>
+            </svg>
+          </span>
+
           <span class="card-label">Alternativa próxima</span>
+
           <h3>Pousada Coruja Branca</h3>
-          <p>Avenida Beira Mar, 29064 - Berlinque, Ilha de Itaparica - BA.</p>
-          <p>Uma opção próxima e acolhedora, alternativa ao local do evento.</p>
+
+          <p>
+            Avenida Beira Mar, 29064 — Berlinque, Ilha de Itaparica — BA.
+          </p>
+
+          <p>
+            Uma opção próxima e acolhedora para quem prefere se hospedar
+            fora do local do evento.
+          </p>
+
           <div class="button-row">
-            <a class="secondary-button" href="https://www.google.com/maps/search/?api=1&query=Pousada%20Coruja%20Branca%20Berlinque%20Ilha%20de%20Itaparica%20BA" target="_blank" rel="noopener">Abrir no mapa</a>
+            <a
+              class="map-button"
+              href="https://www.google.com/maps/search/?api=1&query=Pousada%20Coruja%20Branca%20Berlinque%20Ilha%20de%20Itaparica%20BA"
+              target="_blank"
+              rel="noopener"
+            >
+              Abrir no mapa →
+            </a>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="content-box">
-      <p class="eyebrow">Trajetos sugeridos</p>
-      <h1>A partir do Aeroporto Internacional de Salvador</h1>
-      <div class="route-list">
-        <article class="route-item">
+    <section
+      class="directions-section"
+      aria-labelledby="trajetos-sugeridos"
+    >
+      <div class="directions-heading">
+        <img
+          src="img/flor-centro.png"
+          alt=""
+          aria-hidden="true"
+        >
+
+        <p class="eyebrow">A partir de Salvador</p>
+
+        <h2 id="trajetos-sugeridos">Trajetos sugeridos</h2>
+
+        <p>
+          Escolha a alternativa que melhor se adapta ao seu horário,
+          ao número de pessoas e ao tipo de viagem.
+        </p>
+      </div>
+
+      <div class="routes-grid">
+        <article class="route-card">
+          <div class="route-card-top">
+            <span class="route-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor">
+                <path d="M8 31h32l-5 9H13l-5-9Z"></path>
+                <path d="M15 31V17h18v14M20 17V10h8v7"></path>
+                <path d="M10 43c5-3 10-3 14 0s9 3 14 0"></path>
+              </svg>
+            </span>
+
+            <span class="route-number">01</span>
+          </div>
+
           <h3>Ferry Boat + táxi</h3>
+
           <p>
-            É possível realizar a travessia de Ferry Boat a partir de Salvador.
-            Ao chegar na ilha, o trajeto até Tairu pode ser feito por táxi ou transporte local.
-            <strong>Tempo estimado:</strong> 2h30 a 3h.
+            Faça a travessia de Ferry Boat a partir de Salvador. Ao chegar
+            à ilha, siga até Tairu de táxi ou transporte local.
           </p>
+
+          <span class="route-time">
+            Tempo estimado: 2h30 a 3h
+          </span>
         </article>
 
-        <article class="route-item">
+        <article class="route-card">
+          <div class="route-card-top">
+            <span class="route-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor">
+                <path d="M9 31h30l-3-10H12L9 31Z"></path>
+                <path d="M15 21l3-8h12l3 8M14 31v6M34 31v6"></path>
+                <circle cx="16" cy="32" r="3"></circle>
+                <circle cx="32" cy="32" r="3"></circle>
+              </svg>
+            </span>
+
+            <span class="route-number">02</span>
+          </div>
+
           <h3>Carro + Ferry Boat</h3>
+
           <p>
-            Também é possível alugar um carro no aeroporto e seguir até o Terminal São Joaquim,
-            onde o veículo realiza a travessia pelo Ferry Boat. Ao desembarcar em Bom Despacho,
-            basta seguir de carro até Tairu. <strong>Tempo estimado:</strong> 3h a 3h30.
+            Alugue um carro no aeroporto e siga até o Terminal São Joaquim.
+            Após a travessia, desembarque em Bom Despacho e continue até Tairu.
           </p>
+
+          <span class="route-time">
+            Tempo estimado: 3h a 3h30
+          </span>
         </article>
 
-        <article class="route-item">
+        <article class="route-card">
+          <div class="route-card-top">
+            <span class="route-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor">
+                <path d="M11 40c7-8 7-15 2-22 9 2 15-2 20-10 1 9 3 16 7 21-10 1-17 5-21 11"></path>
+                <path d="M15 37c5-6 11-11 19-16"></path>
+              </svg>
+            </span>
+
+            <span class="route-number">03</span>
+          </div>
+
           <h3>Carro via estrada</h3>
+
           <p>
-            A região também pode ser acessada por via terrestre, contornando a Baía de Todos-os-Santos,
-            passando por Santo Antônio de Jesus e Nazaré. É um percurso contínuo, sem necessidade de travessia.
-            <strong>Tempo estimado:</strong> 3h30 a 4h.
+            Contorne a Baía de Todos-os-Santos por via terrestre, passando
+            por Santo Antônio de Jesus e Nazaré, sem necessidade de travessia.
           </p>
+
+          <span class="route-time">
+            Tempo estimado: 3h30 a 4h
+          </span>
         </article>
+      </div>
+
+      <div class="travel-note">
+        <strong>Planeje com antecedência:</strong>
+        os tempos são estimados e podem variar conforme o trânsito,
+        o horário e o movimento no Ferry Boat.
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <span>Ivana &amp; Gabriel</span>
-    <span>Como chegar</span>
+    <span>Feito pelo noivo utilizando a linguagem R 🧡</span>
   </footer>
 </body>
 </html>

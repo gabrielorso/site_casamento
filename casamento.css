@@ -189,7 +189,7 @@ main.content {
 
 .wedding-line3 {
   margin: 0.5rem 0 0;
-  font-size: clamp(1rem, 2vw, 1.22rem);
+  font-size: clamp(0.8rem, 2vw, 1rem);
   color: var(--muted);
 }
 
@@ -283,6 +283,7 @@ main.content {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-size: 0.82rem;
+  text-align: center;
 }
 
 .hero-panel h1,
@@ -297,6 +298,7 @@ main.content {
 
 .hero-panel h1 {
   font-size: clamp(2rem, 5vw, 3.4rem);
+  text-align: center;
 }
 
 .lead {
@@ -304,6 +306,7 @@ main.content {
   margin: 0 0 1rem;
   font-size: 1.1rem;
   color: var(--muted);
+  text-align: center;
 }
 
 .highlight-strip {
@@ -891,7 +894,7 @@ small,
   max-width: 660px;
   margin-top: 0.95rem;
   color: #514842;
-  font-size: clamp(1.05rem, 2vw, 1.32rem);
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
   line-height: 1.45;
 }
 
@@ -1021,6 +1024,7 @@ small,
   color: var(--home-coral);
   font-size: 0.86rem;
   letter-spacing: 0.19em;
+  text-align: center;
 }
 
 .home-page .hero-panel .eyebrow::after {
@@ -1029,6 +1033,7 @@ small,
   height: 1px;
   background: currentColor;
   opacity: 0.7;
+  text-align: center;
 }
 
 .home-page .hero-panel h1 {
@@ -1053,6 +1058,7 @@ small,
   color: #514842;
   font-size: 1.08rem;
   line-height: 1.68;
+  text-align: center;
 }
 
 /* Informações: data, horário e destino */
@@ -1156,7 +1162,7 @@ small,
   position: absolute;
   z-index: 0;
   left: -2.2rem;
-  top: -1.55rem;
+  top: 1.2rem;
   width: 170px;
   height: 235px;
   opacity: 0.72;
@@ -1173,7 +1179,7 @@ small,
   position: absolute;
   z-index: 0;
   right: -2.2rem;
-  top: -1.45rem;
+  top: 1.2rem;
   width: 170px;
   height: 235px;
   opacity: 0.72;
@@ -1519,7 +1525,7 @@ small,
 
   .home-page .wedding-line3 {
     margin-top: 0.55rem;
-    font-size: 0.94rem;
+    font-size: 0.8rem;
   }
 
   .home-page .casamento-nav {
@@ -1648,6 +1654,7 @@ small,
 
   .home-page .hero-panel .eyebrow {
     font-size: 0.72rem;
+    text-align: center;
   }
 
   .home-page .highlight-item {
@@ -1657,5 +1664,145 @@ small,
   .home-page .highlight-icon svg {
     width: 38px;
     height: 38px;
+  }
+}
+/* =========================================================
+   CORREÇÕES FINAIS DA HOME
+   Centralização do convite e dos dois cards
+   ========================================================= */
+
+.home-page .hero-panel .eyebrow {
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 0.75rem;
+  text-align: center;
+}
+
+.home-page .hero-panel h1 {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto 1.25rem;
+  text-align: center;
+}
+
+.home-page .hero-panel .lead {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto 1.05rem;
+  text-align: center;
+}
+
+.home-page .highlight-strip {
+  width: 100%;
+  max-width: 960px;
+  margin: 2rem auto 0;
+  padding-left: 0;
+}
+
+.home-page .cards-grid {
+  width: 100%;
+  max-width: 1080px;
+  grid-template-columns: repeat(3, minmax(260px, 340px));
+  justify-content: center;
+  align-items: stretch;
+  gap: 1.15rem;
+  margin: 0 auto 1.3rem;
+}
+
+.home-page .cards-grid > a {
+  width: 100%;
+  min-width: 0;
+}
+
+.home-page .page-card {
+  width: 100%;
+  min-height: 270px;
+  padding: 1.35rem 1.35rem 1.15rem;
+}
+
+.home-page .page-card p {
+  max-width: 82%;
+}
+
+.home-page .cards-grid > a:nth-child(1) .page-card::after {
+  width: 210px;
+  height: 210px;
+  right: -0.75rem;
+  bottom: -0.85rem;
+  background-image: url("img/folhas-inferior-esquerdo.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: contain;
+  transform: scaleX(-1);
+  transform-origin: right bottom;
+  opacity: 0.72;
+}
+
+.home-page .cards-grid > a:nth-child(2) .page-card::after {
+  width: 210px;
+  height: 210px;
+  right: -0.75rem;
+  bottom: -0.85rem;
+  background-image: url("img/flores_inferiordireito.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: contain;
+  transform: scaleX(-1);
+  transform-origin: right bottom;
+  opacity: 0.72;
+}
+
+@media (max-width: 900px) {
+  .home-page .cards-grid {
+    max-width: 720px;
+    grid-template-columns: repeat(2, minmax(250px, 330px));
+  }
+}
+
+@media (max-width: 720px) {
+  .home-page .hero-panel .lead {
+    max-width: 100%;
+  }
+
+  .home-page .highlight-strip {
+    max-width: 430px;
+  }
+
+  .home-page .cards-grid {
+    max-width: 430px;
+    grid-template-columns: minmax(0, 430px);
+    justify-content: center;
+  }
+
+  .home-page .page-card {
+    min-height: 245px;
+  }
+
+  .home-page .cards-grid > a:nth-child(1) .page-card::after,
+  .home-page .cards-grid > a:nth-child(2) .page-card::after {
+    width: 185px;
+    height: 185px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-page .cards-grid {
+    max-width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-page .page-card p {
+    max-width: 78%;
+  }
+
+  .home-page .cards-grid > a:nth-child(1) .page-card::after,
+  .home-page .cards-grid > a:nth-child(2) .page-card::after {
+    width: 165px;
+    height: 165px;
+    right: -0.85rem;
+    bottom: -0.85rem;
   }
 }
