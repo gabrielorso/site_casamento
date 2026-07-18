@@ -61,8 +61,16 @@
       font-size: 2.55rem;
       overflow: hidden;
       background:
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.75), transparent 32%),
-        linear-gradient(135deg, rgba(168, 196, 199, 0.50), rgba(232, 213, 196, 0.50));
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(255, 255, 255, 0.75),
+          transparent 32%
+        ),
+        linear-gradient(
+          135deg,
+          rgba(168, 196, 199, 0.50),
+          rgba(232, 213, 196, 0.50)
+        );
     }
 
     .gift-photo.has-image {
@@ -132,32 +140,6 @@
       cursor: wait;
     }
 
-    .gift-form {
-      display: none;
-      margin-top: 0.75rem;
-      padding-top: 0.75rem;
-      border-top: 1px dashed rgba(209, 107, 73, 0.35);
-    }
-
-    .gift-form.open {
-      display: grid;
-      gap: 0.65rem;
-    }
-
-    .gift-form .form-field textarea {
-      min-height: 76px;
-    }
-
-    .gift-form-actions {
-      display: grid;
-      gap: 0.45rem;
-    }
-
-    .gift-form-actions .secondary-button {
-      text-align: center;
-      padding: 0.58rem 0.8rem;
-    }
-
     .gift-message {
       margin: 0 0 1rem 0;
     }
@@ -189,13 +171,6 @@
       background: rgba(255, 255, 255, 0.72);
     }
 
-    .pix-box strong {
-      color: var(--orange);
-      font-size: 1.05rem;
-      letter-spacing: 0.02em;
-      word-break: break-word;
-    }
-
     .pix-code-text {
       width: 100%;
       min-height: 112px;
@@ -206,12 +181,6 @@
       background: rgba(255, 255, 255, 0.9);
       color: var(--text);
       font: 0.82rem/1.35 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-
-    .pix-copy-button {
-      text-align: center;
-      padding: 0.68rem 0.9rem;
-      cursor: pointer;
     }
 
     .copyable {
@@ -297,8 +266,6 @@
       padding: 0.7rem 0.9rem;
     }
 
-    /* ===== Popup de identificação do convidado ===== */
-
     .gift-modal-message {
       display: none;
       padding: 0.72rem 0.8rem;
@@ -359,10 +326,6 @@
         grid-template-columns: 1fr;
       }
 
-      .gift-card {
-        grid-template-rows: auto 1fr;
-      }
-
       .gift-photo,
       .gift-photo.has-image {
         min-height: 0;
@@ -386,37 +349,53 @@
 </head>
 
 <body>
-  <div class="wedding-topbar">Lista de presentes · Ivana & Gabriel</div>
+  <div class="wedding-topbar">
+    Lista de presentes · Ivana & Gabriel
+  </div>
 
   <main class="content">
     <header class="wedding-header">
-      <div class="monogram"><img src="img/IG.png" alt="Monograma de Ivana e Gabriel"></div>
+      <div class="monogram">
+        <img
+          src="img/IG.png"
+          alt="Monograma de Ivana e Gabriel"
+        >
+      </div>
+
       <div class="wedding-header-text">
         <p class="wedding-line1">Ivana & Gabriel</p>
         <h1 class="wedding-line2">Lista de Presentes</h1>
-        <p class="wedding-line3">Algumas opções simbólicas para participar da nossa nova fase.</p>
+        <p class="wedding-line3">
+          Algumas opções simbólicas para participar da nossa nova fase.
+        </p>
       </div>
     </header>
 
-    <nav class="casamento-nav" aria-label="Navegação principal do casamento">
+    <nav
+      class="casamento-nav"
+      aria-label="Navegação principal do casamento"
+    >
       <ul>
         <li><a href="index.html">Início</a></li>
-        <!--
-        <li><a href="https://gabrielorso.shinyapps.io/Confirmacao" target="_blank" rel="noopener">Confirmar presença</a></li>
-        -->
         <li><a href="como-chegar.html">Como chegar</a></li>
         <li><a href="historia.html">Nossa História</a></li>
-        <li><a class="active" href="presentes.html">Lista de Presentes</a></li>
+        <li>
+          <a class="active" href="presentes.html">
+            Lista de Presentes
+          </a>
+        </li>
       </ul>
     </nav>
 
     <section class="content-box gifts-intro">
       <p class="eyebrow">Lista de Presentes</p>
       <h1>Um carinho para nossa vida a dois</h1>
+
       <p class="lead">
-        Sua presença já é nosso maior presente. Mas, para quem quiser nos presentear,
-        reunimos algumas opções simbólicas. Escolha um item, informe seu nome e o
-        registro será enviado para nossa planilha.
+        Sua presença já é nosso maior presente. Mas, para quem quiser
+        nos presentear, reunimos algumas opções simbólicas. Escolha um
+        item, informe seu nome e o registro será enviado para nossa
+        planilha.
       </p>
     </section>
 
@@ -425,20 +404,32 @@
         <div>
           <p class="eyebrow">Escolha um presente</p>
           <h2>Opções disponíveis</h2>
+
           <p class="gifts-note muted">
-            Depois do registro, aparecerá um PIX copia e cola já com o valor do presente.
+            Depois do registro, aparecerá um PIX copia e cola.
+            Nos presentes de valor livre, você escolhe o valor no banco.
           </p>
         </div>
 
-        <button class="secondary-button as-button" type="button" id="reloadGiftsButton">
+        <button
+          class="secondary-button as-button"
+          type="button"
+          id="reloadGiftsButton"
+        >
           Atualizar lista
         </button>
       </div>
 
       <div id="giftMsg"></div>
 
-      <div id="giftsGrid" class="gifts-grid" aria-live="polite">
-        <div class="loading-card">Carregando presentes...</div>
+      <div
+        id="giftsGrid"
+        class="gifts-grid"
+        aria-live="polite"
+      >
+        <div class="loading-card">
+          Carregando presentes...
+        </div>
       </div>
     </section>
   </main>
@@ -449,7 +440,11 @@
   </footer>
 
   <dialog id="giftFormModal" class="pix-modal">
-    <form id="giftModalForm" class="pix-modal-card gift-modal-card" novalidate>
+    <form
+      id="giftModalForm"
+      class="pix-modal-card gift-modal-card"
+      novalidate
+    >
       <button
         class="pix-modal-close"
         type="button"
@@ -459,7 +454,10 @@
         ×
       </button>
 
-      <h2 class="pix-modal-title">Quero presentear 💛</h2>
+      <h2 class="pix-modal-title">
+        Quero presentear 💛
+      </h2>
+
       <p class="pix-modal-subtitle">
         Preencha seus dados para registrar o presente escolhido.
       </p>
@@ -481,6 +479,7 @@
 
       <div class="form-field">
         <label for="giftModalName">Seu nome</label>
+
         <input
           id="giftModalName"
           type="text"
@@ -492,7 +491,10 @@
       </div>
 
       <div class="form-field">
-        <label for="giftModalMessageText">Mensagem opcional</label>
+        <label for="giftModalMessageText">
+          Mensagem opcional
+        </label>
+
         <textarea
           id="giftModalMessageText"
           name="mensagem"
@@ -523,12 +525,23 @@
 
   <dialog id="pixModal" class="pix-modal">
     <div class="pix-modal-card">
-      <button class="pix-modal-close" type="button" id="closePixModalButton" aria-label="Fechar">
+      <button
+        class="pix-modal-close"
+        type="button"
+        id="closePixModalButton"
+        aria-label="Fechar"
+      >
         ×
       </button>
 
-      <h2 class="pix-modal-title">Presente registrado 💛</h2>
-      <p class="pix-modal-subtitle" id="pixModalSubtitle"></p>
+      <h2 class="pix-modal-title">
+        Presente registrado 💛
+      </h2>
+
+      <p
+        class="pix-modal-subtitle"
+        id="pixModalSubtitle"
+      ></p>
 
       <div class="pix-modal-info">
         <span>Presente:</span>
@@ -540,37 +553,59 @@
 
       <div class="pix-box">
         <span>PIX copia e cola:</span>
-        <textarea id="pixCopyPaste" class="pix-code-text" readonly></textarea>
+
+        <textarea
+          id="pixCopyPaste"
+          class="pix-code-text"
+          readonly
+        ></textarea>
       </div>
 
       <div class="pix-modal-actions">
-        <button class="gift-button copyable" type="button" onclick="copyPixCode()">
+        <button
+          class="gift-button copyable"
+          type="button"
+          id="copyPixButton"
+        >
           Copiar PIX copia e cola
         </button>
 
-        <button class="secondary-button" type="button" id="finishPixModalButton">
+        <button
+          class="secondary-button"
+          type="button"
+          id="finishPixModalButton"
+        >
           Fechar
         </button>
       </div>
     </div>
   </dialog>
 
-  <div id="copy-toast" role="status" aria-live="polite" aria-atomic="true">Copiado!</div>
+  <div
+    id="copy-toast"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+  >
+    Copiado!
+  </div>
 
   <script>
     /************************************************
      * CONFIGURAÇÕES
      ************************************************/
 
-    const API = 'https://script.google.com/macros/s/AKfycbxq_rsCSWGp1tZQKnfwRBgMoDiIr4lfkslA_zbayHyXICWMHhzbHFPauDKc_VRpFbhTIA/exec';
-    const PIX_KEY = '+5555999329806';
-    const HAVAN_LIST_URL = 'https://lista.havan.com.br/Convidado/ItensListaPresente/947830';
+    const API =
+      'https://script.google.com/macros/s/AKfycbxq_rsCSWGp1tZQKnfwRBgMoDiIr4lfkslA_zbayHyXICWMHhzbHFPauDKc_VRpFbhTIA/exec';
 
     /*
-      Para PIX copia e cola, além da chave e do valor,
-      o BR Code usa nome e cidade do recebedor.
-      Use sem acentos e, de preferência, em caixa alta.
-    */
+     * Link de segurança da lista da Havan.
+     * Será usado caso a API não devolva a coluna "link".
+     */
+    const HAVAN_LIST_URL =
+      'https://lista.havan.com.br/Convidado/ItensListaPresente/947830';
+
+    const PIX_KEY = '+5555999329806';
     const PIX_NAME = 'Gabriel Agostini Orso';
     const PIX_CITY = 'Santa Maria - RS';
 
@@ -578,73 +613,128 @@
      * ELEMENTOS
      ************************************************/
 
-    const giftsGrid = document.getElementById('giftsGrid');
-    const giftMsg = document.getElementById('giftMsg');
-    const reloadGiftsButton = document.getElementById('reloadGiftsButton');
+    const giftsGrid =
+      document.getElementById('giftsGrid');
 
-    const giftFormModal = document.getElementById('giftFormModal');
-    const giftModalForm = document.getElementById('giftModalForm');
-    const closeGiftFormModalButton = document.getElementById('closeGiftFormModalButton');
-    const cancelGiftFormModalButton = document.getElementById('cancelGiftFormModalButton');
-    const giftModalSubmitButton = document.getElementById('giftModalSubmitButton');
-    const giftModalGift = document.getElementById('giftModalGift');
-    const giftModalAmount = document.getElementById('giftModalAmount');
-    const giftModalName = document.getElementById('giftModalName');
-    const giftModalMessage = document.getElementById('giftModalMessage');
+    const giftMsg =
+      document.getElementById('giftMsg');
+
+    const reloadGiftsButton =
+      document.getElementById('reloadGiftsButton');
+
+    const giftFormModal =
+      document.getElementById('giftFormModal');
+
+    const giftModalForm =
+      document.getElementById('giftModalForm');
+
+    const closeGiftFormModalButton =
+      document.getElementById('closeGiftFormModalButton');
+
+    const cancelGiftFormModalButton =
+      document.getElementById('cancelGiftFormModalButton');
+
+    const giftModalSubmitButton =
+      document.getElementById('giftModalSubmitButton');
+
+    const giftModalGift =
+      document.getElementById('giftModalGift');
+
+    const giftModalAmount =
+      document.getElementById('giftModalAmount');
+
+    const giftModalName =
+      document.getElementById('giftModalName');
+
+    const giftModalMessage =
+      document.getElementById('giftModalMessage');
+
+    const pixModal =
+      document.getElementById('pixModal');
+
+    const closePixModalButton =
+      document.getElementById('closePixModalButton');
+
+    const finishPixModalButton =
+      document.getElementById('finishPixModalButton');
+
+    const copyPixButton =
+      document.getElementById('copyPixButton');
+
+    const pixModalSubtitle =
+      document.getElementById('pixModalSubtitle');
+
+    const pixModalGift =
+      document.getElementById('pixModalGift');
+
+    const pixModalAmount =
+      document.getElementById('pixModalAmount');
+
+    const pixCopyPaste =
+      document.getElementById('pixCopyPaste');
 
     let selectedGift = null;
 
-    const pixModal = document.getElementById('pixModal');
-    const closePixModalButton = document.getElementById('closePixModalButton');
-    const finishPixModalButton = document.getElementById('finishPixModalButton');
-    const pixModalSubtitle = document.getElementById('pixModalSubtitle');
-    const pixModalGift = document.getElementById('pixModalGift');
-    const pixModalAmount = document.getElementById('pixModalAmount');
-    const pixCopyPaste = document.getElementById('pixCopyPaste');
-
     /************************************************
-     * FUNÇÕES AUXILIARES GERAIS
+     * FUNÇÕES AUXILIARES
      ************************************************/
 
-    function moneyBR(value) {
-      if (value === null || value === undefined || value === '') return '';
+    function parseAmount(value) {
+      if (
+        value === null ||
+        value === undefined ||
+        value === ''
+      ) {
+        return null;
+      }
 
+      if (typeof value === 'number') {
+        return Number.isFinite(value) && value > 0
+          ? value
+          : null;
+      }
+
+      let raw = String(value).trim();
+
+      if (!raw) {
+        return null;
+      }
+
+      raw = raw.replace(/[^\d,.-]/g, '');
+
+      if (raw.includes(',')) {
+        raw = raw
+          .replace(/\./g, '')
+          .replace(',', '.');
+      }
+
+      const number = Number(raw);
+
+      if (
+        !Number.isFinite(number) ||
+        number <= 0
+      ) {
+        return null;
+      }
+
+      return number;
+    }
+
+    function moneyBR(value) {
       const number = parseAmount(value);
 
       if (number === null) {
-        return String(value);
+        return value === null ||
+          value === undefined ||
+          value === ''
+            ? ''
+            : String(value);
       }
 
       return number.toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL'
       });
-    }
-
-    function parseAmount(value) {
-      if (value === null || value === undefined || value === '') return null;
-
-      if (typeof value === 'number') {
-        return Number.isFinite(value) && value > 0 ? value : null;
-      }
-
-      let raw = String(value).trim();
-
-      if (!raw) return null;
-
-      raw = raw.replace(/[^\d,.-]/g, '');
-
-      if (raw.includes(',')) {
-        raw = raw.replace(/\./g, '').replace(',', '.');
-      }
-
-      const number = Number(raw);
-
-      if (!Number.isFinite(number) || number <= 0) {
-        return null;
-      }
-
-      return number;
     }
 
     function escapeHTML(value) {
@@ -666,29 +756,58 @@
     }
 
     function isFreePixType(type) {
-      return ['pix_livre', 'pixlivre', 'valor_livre', 'livre'].includes(type);
+      return [
+        'pix_livre',
+        'pixlivre',
+        'valor_livre',
+        'livre'
+      ].includes(type);
     }
 
     function isExternalLinkType(type) {
-      return ['link_externo', 'linkexterno', 'externo', 'link', 'havan'].includes(type);
+      return [
+        'link_externo',
+        'linkexterno',
+        'externo',
+        'link',
+        'havan'
+      ].includes(type);
     }
 
     function safeExternalUrl(value) {
       const raw = String(value || '').trim();
-      if (!raw) return '';
+
+      if (!raw) {
+        return '';
+      }
 
       try {
-        const url = new URL(raw, window.location.href);
-        if (!['http:', 'https:'].includes(url.protocol)) return '';
+        const url = new URL(
+          raw,
+          window.location.href
+        );
+
+        if (
+          !['http:', 'https:'].includes(url.protocol)
+        ) {
+          return '';
+        }
+
         return url.href;
-      } catch {
+
+      } catch (err) {
         return '';
       }
     }
 
     function showMessage(type, html) {
-      giftMsg.innerHTML = `<div class="gift-message ${type}">${html}</div>`;
-      giftMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      giftMsg.innerHTML =
+        `<div class="gift-message ${type}">${html}</div>`;
+
+      giftMsg.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
     }
 
     function clearMessage() {
@@ -696,57 +815,94 @@
     }
 
     function showToast(message) {
-      const toast = document.getElementById('copy-toast');
-      if (!toast) return;
+      const toast =
+        document.getElementById('copy-toast');
+
+      if (!toast) {
+        return;
+      }
 
       toast.textContent = message || 'Copiado!';
       toast.classList.add('show');
 
       clearTimeout(window.__copyToastTimer);
-      window.__copyToastTimer = setTimeout(() => {
-        toast.classList.remove('show');
-      }, 1400);
+
+      window.__copyToastTimer =
+        window.setTimeout(() => {
+          toast.classList.remove('show');
+        }, 1400);
     }
 
     async function copyText(text) {
-      if (navigator.clipboard && window.isSecureContext) {
+      if (
+        navigator.clipboard &&
+        window.isSecureContext
+      ) {
         await navigator.clipboard.writeText(text);
         return true;
       }
 
-      const textarea = document.createElement('textarea');
+      const textarea =
+        document.createElement('textarea');
+
       textarea.value = text;
       textarea.setAttribute('readonly', '');
       textarea.style.position = 'fixed';
       textarea.style.top = '-9999px';
 
       document.body.appendChild(textarea);
+
       textarea.focus();
       textarea.select();
 
-      const ok = document.execCommand('copy');
+      const copied =
+        document.execCommand('copy');
+
       document.body.removeChild(textarea);
 
-      return ok;
+      return copied;
     }
 
     async function copyPixCode() {
-      const text = pixCopyPaste?.value || window.__lastPixPayload || '';
+      const text =
+        pixCopyPaste.value ||
+        window.__lastPixPayload ||
+        '';
 
       if (!text) {
-        showMessage('err', 'Não encontrei o código PIX para copiar.');
+        showMessage(
+          'err',
+          'Não encontrei o código PIX para copiar.'
+        );
+
         return;
       }
 
       try {
         await copyText(text);
-        showToast('PIX copia e cola copiado!');
+
+        showToast(
+          'PIX copia e cola copiado!'
+        );
+
       } catch (err) {
-        showMessage('err', 'Não consegui copiar automaticamente. Copie manualmente o texto do PIX.');
+        showMessage(
+          'err',
+          'Não consegui copiar automaticamente. Copie manualmente o texto do PIX.'
+        );
       }
     }
 
-    function showPixModal({ nome, giftTitle, amountText, pixPayload }) {
+    /************************************************
+     * MODAL DO PIX
+     ************************************************/
+
+    function showPixModal({
+      nome,
+      giftTitle,
+      amountText,
+      pixPayload
+    }) {
       window.__lastPixPayload = pixPayload;
 
       pixModalSubtitle.textContent =
@@ -756,88 +912,128 @@
       pixModalAmount.textContent = amountText;
       pixCopyPaste.value = pixPayload;
 
-      if (typeof pixModal.showModal === 'function') {
+      if (
+        typeof pixModal.showModal === 'function'
+      ) {
         pixModal.showModal();
+
       } else {
-        showMessage('ok', `
-          <strong>Obrigado, ${escapeHTML(nome)}!</strong><br>
-          Seu presente foi registrado com carinho para Ivana & Gabriel.
-          <div class="pix-box">
-            <span>Presente:</span>
-            <strong>${escapeHTML(giftTitle)}</strong>
+        showMessage(
+          'ok',
+          `
+            <strong>
+              Obrigado, ${escapeHTML(nome)}!
+            </strong>
+            <br>
 
-            <span>Valor:</span>
-            <strong>${escapeHTML(amountText)}</strong>
+            Seu presente foi registrado com carinho
+            para Ivana & Gabriel.
 
-            <span>PIX copia e cola:</span>
-            <textarea class="pix-code-text" readonly>${escapeHTML(pixPayload)}</textarea>
+            <div class="pix-box">
+              <span>Presente:</span>
+              <strong>${escapeHTML(giftTitle)}</strong>
 
-            <button class="secondary-button pix-copy-button copyable" type="button" onclick="copyPixCode()">
-              Copiar PIX copia e cola
-            </button>
-          </div>
-        `);
+              <span>Valor:</span>
+              <strong>${escapeHTML(amountText)}</strong>
+
+              <span>PIX copia e cola:</span>
+
+              <textarea
+                class="pix-code-text"
+                readonly
+              >${escapeHTML(pixPayload)}</textarea>
+            </div>
+          `
+        );
       }
     }
 
     function closePixModal() {
-      if (pixModal && pixModal.open) {
+      if (
+        pixModal &&
+        pixModal.open
+      ) {
         pixModal.close();
       }
     }
 
     /************************************************
-     * GERADOR PIX COPIA E COLA - BR CODE / EMV
+     * GERADOR PIX COPIA E COLA
      ************************************************/
 
-    function normalizePixText(value, maxLength, fallback) {
-      const clean = String(value || fallback || '')
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toUpperCase()
-        .replace(/[^A-Z0-9 ]/g, ' ')
-        .replace(/\s+/g, ' ')
-        .trim();
+    function normalizePixText(
+      value,
+      maxLength,
+      fallback
+    ) {
+      const clean =
+        String(value || fallback || '')
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toUpperCase()
+          .replace(/[^A-Z0-9 ]/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim();
 
       return clean.substring(0, maxLength);
     }
 
-    function normalizePixDescription(value, maxLength) {
+    function normalizePixDescription(
+      value,
+      maxLength
+    ) {
       return String(value || '')
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^A-Za-z0-9 .\-_/]/g, ' ')
+        .replace(
+          /[^A-Za-z0-9 .\-_/]/g,
+          ' '
+        )
         .replace(/\s+/g, ' ')
         .trim()
         .substring(0, maxLength);
     }
 
     function normalizeTxid(value) {
-      const clean = String(value || '')
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toUpperCase()
-        .replace(/[^A-Z0-9]/g, '')
-        .substring(0, 25);
+      const clean =
+        String(value || '')
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toUpperCase()
+          .replace(/[^A-Z0-9]/g, '')
+          .substring(0, 25);
 
       return clean || 'IG';
     }
 
     function emvField(id, value) {
       const text = String(value || '');
-      const length = String(text.length).padStart(2, '0');
+
+      const length =
+        String(text.length).padStart(2, '0');
+
       return `${id}${length}${text}`;
     }
 
     function crc16CCITT(payload) {
       let crc = 0xFFFF;
 
-      for (let i = 0; i < payload.length; i++) {
-        crc ^= payload.charCodeAt(i) << 8;
+      for (
+        let i = 0;
+        i < payload.length;
+        i++
+      ) {
+        crc ^=
+          payload.charCodeAt(i) << 8;
 
-        for (let j = 0; j < 8; j++) {
+        for (
+          let j = 0;
+          j < 8;
+          j++
+        ) {
           if ((crc & 0x8000) !== 0) {
-            crc = (crc << 1) ^ 0x1021;
+            crc =
+              (crc << 1) ^ 0x1021;
           } else {
             crc = crc << 1;
           }
@@ -846,53 +1042,129 @@
         }
       }
 
-      return crc.toString(16).toUpperCase().padStart(4, '0');
+      return crc
+        .toString(16)
+        .toUpperCase()
+        .padStart(4, '0');
     }
 
-    function buildPixPayload({ key, name, city, amount, txid, description }) {
-      const pixKey = String(key || '').trim();
+    function buildPixPayload({
+      key,
+      name,
+      city,
+      amount,
+      txid,
+      description
+    }) {
+      const pixKey =
+        String(key || '').trim();
 
-      if (!pixKey || pixKey === 'pix aqui') {
-        throw new Error('Configure a chave PIX no arquivo presentes.html.');
+      if (!pixKey) {
+        throw new Error(
+          'Configure a chave PIX no arquivo presentes.html.'
+        );
       }
 
-      const merchantName = normalizePixText(name, 25, 'IVANA E GABRIEL');
-      const merchantCity = normalizePixText(city, 15, 'SANTA MARIA');
-      const safeTxid = normalizeTxid(txid);
-      const safeDescription = normalizePixDescription(description, 50);
+      const merchantName =
+        normalizePixText(
+          name,
+          25,
+          'IVANA E GABRIEL'
+        );
+
+      const merchantCity =
+        normalizePixText(
+          city,
+          15,
+          'SANTA MARIA'
+        );
+
+      const safeTxid =
+        normalizeTxid(txid);
+
+      const safeDescription =
+        normalizePixDescription(
+          description,
+          50
+        );
 
       let merchantAccountInfo =
-        emvField('00', 'br.gov.bcb.pix') +
-        emvField('01', pixKey);
+        emvField(
+          '00',
+          'br.gov.bcb.pix'
+        ) +
+        emvField(
+          '01',
+          pixKey
+        );
 
       if (safeDescription) {
-        merchantAccountInfo += emvField('02', safeDescription);
+        merchantAccountInfo +=
+          emvField(
+            '02',
+            safeDescription
+          );
       }
 
       let payload =
         emvField('00', '01') +
-        emvField('26', merchantAccountInfo) +
+        emvField(
+          '26',
+          merchantAccountInfo
+        ) +
         emvField('52', '0000') +
         emvField('53', '986');
 
-      if (amount !== null && amount !== undefined && Number.isFinite(Number(amount))) {
-        payload += emvField('54', Number(amount).toFixed(2));
+      /*
+       * O campo 54 é o valor da transação.
+       *
+       * Nos presentes do tipo pix_livre,
+       * amount será null e este campo não será criado.
+       */
+      if (
+        amount !== null &&
+        amount !== undefined &&
+        Number.isFinite(Number(amount))
+      ) {
+        payload += emvField(
+          '54',
+          Number(amount).toFixed(2)
+        );
       }
 
       payload +=
         emvField('58', 'BR') +
-        emvField('59', merchantName) +
-        emvField('60', merchantCity) +
-        emvField('62', emvField('05', safeTxid));
+        emvField(
+          '59',
+          merchantName
+        ) +
+        emvField(
+          '60',
+          merchantCity
+        ) +
+        emvField(
+          '62',
+          emvField(
+            '05',
+            safeTxid
+          )
+        );
 
-      const payloadForCrc = payload + '6304';
-      const crc = crc16CCITT(payloadForCrc);
+      const payloadForCrc =
+        payload + '6304';
+
+      const crc =
+        crc16CCITT(payloadForCrc);
 
       return payloadForCrc + crc;
     }
 
     function generateTxid(giftId) {
-      const base = `IG${giftId}${Date.now().toString().slice(-6)}`;
+      const base =
+        `IG${giftId}${Date.now()
+          .toString()
+          .slice(-6)}`;
+
       return normalizeTxid(base);
     }
 
@@ -905,123 +1177,201 @@
         clearMessage();
       }
 
-      giftsGrid.innerHTML = `<div class="loading-card">Carregando presentes...</div>`;
+      giftsGrid.innerHTML = `
+        <div class="loading-card">
+          Carregando presentes...
+        </div>
+      `;
 
       try {
-        if (!API || API === 'url api aqui') {
-          throw new Error('Configure a URL da API no arquivo presentes.html.');
-        }
+        const response =
+          await fetch(
+            `${API}?action=gifts&ts=${Date.now()}`,
+            {
+              method: 'GET',
+              cache: 'no-store'
+            }
+          );
 
-        const response = await fetch(API + '?action=gifts&ts=' + Date.now(), {
-          method: 'GET',
-          cache: 'no-store'
-        });
-
-        const text = await response.text();
+        const text =
+          await response.text();
 
         let data;
+
         try {
           data = JSON.parse(text);
+
         } catch (err) {
-          throw new Error('A resposta da API não veio em JSON. Verifique a implantação do Apps Script.');
+          throw new Error(
+            'A resposta da API não veio em JSON. Verifique a implantação do Apps Script.'
+          );
         }
 
         if (!data.ok) {
-          throw new Error(data.error || 'Erro ao carregar presentes.');
+          throw new Error(
+            data.error ||
+            'Erro ao carregar presentes.'
+          );
         }
 
-        const gifts = Array.isArray(data.gifts) ? data.gifts : [];
+        const gifts =
+          Array.isArray(data.gifts)
+            ? data.gifts
+            : [];
 
         if (gifts.length === 0) {
           giftsGrid.innerHTML = `
             <div class="loading-card">
-              <strong>Todos os presentes já foram escolhidos 🎉</strong><br>
+              <strong>
+                Todos os presentes já foram escolhidos 🎉
+              </strong>
+              <br>
               Muito obrigado pelo carinho!
             </div>
           `;
+
           return;
         }
 
-        giftsGrid.innerHTML = gifts.map(renderGiftCard).join('');
+        giftsGrid.innerHTML =
+          gifts
+            .map(renderGiftCard)
+            .join('');
 
       } catch (err) {
         giftsGrid.innerHTML = `
           <div class="loading-card">
-            Não foi possível carregar a lista de presentes.<br>
-            <small>${escapeHTML(err.message || err)}</small>
+            Não foi possível carregar a lista de presentes.
+            <br>
+            <small>
+              ${escapeHTML(err.message || err)}
+            </small>
           </div>
         `;
       }
     }
 
     function renderGiftCard(gift) {
-      const rawId = String(gift.id || '');
-      const id = escapeHTML(rawId);
+      const rawId =
+        String(gift.id || '');
 
-      const rawTitle = String(gift.title || gift.presente || 'Presente');
-      const title = escapeHTML(rawTitle);
+      const id =
+        escapeHTML(rawId);
 
-      const description = escapeHTML(gift.description || gift.descricao || '');
-      const image = escapeHTML(gift.image_url || gift.imagem_url || '');
+      const rawTitle =
+        String(
+          gift.title ||
+          gift.presente ||
+          'Presente'
+        );
 
-      const rawValue = gift.value ?? gift.valor ?? '';
-      const amount = parseAmount(rawValue);
-      const value = moneyBR(rawValue);
+      const title =
+        escapeHTML(rawTitle);
 
-      const giftType = normalizeGiftType(
-        gift.tipo ??
-        gift.type ??
-        gift.presente_tipo ??
-        gift.tipo_presente ??
-        'pix_fixo'
-      );
-      
-      let externalLink = safeExternalUrl(
-        gift.link ??
-        gift.url ??
-        gift.href ??
-        gift.presente_link ??
-        ''
-      );
+      const description =
+        escapeHTML(
+          gift.description ||
+          gift.descricao ||
+          ''
+        );
+
+      const image =
+        escapeHTML(
+          gift.image_url ||
+          gift.imagem_url ||
+          ''
+        );
+
+      const rawValue =
+        gift.value ??
+        gift.valor ??
+        '';
+
+      const amount =
+        parseAmount(rawValue);
+
+      const value =
+        moneyBR(rawValue);
+
+      const giftType =
+        normalizeGiftType(
+          gift.tipo ??
+          gift.type ??
+          gift.presente_tipo ??
+          gift.tipo_presente ??
+          'pix_fixo'
+        );
+
+      let externalLink =
+        safeExternalUrl(
+          gift.link ??
+          gift.url ??
+          gift.href ??
+          gift.presente_link ??
+          ''
+        );
 
       /*
-      * Link de segurança para a lista da Havan.
-       * É usado quando a API ainda não estiver enviando
-       * corretamente a coluna "link".
-       */
-      if (
-        !externalLink &&
-        (
-          rawId === '20' ||
-          /havan/i.test(rawTitle)
-        )
-      ) {
-        externalLink = HAVAN_LIST_URL;
-      }
-      
-      /*
-       * Reconhecimento reforçado do presente externo.
-       *
-       * O link preenchido já é suficiente para transformar
-       * o botão em link, mesmo que a API não envie "tipo".
+       * Reconhecimento reforçado do link externo.
        */
       const isExternalGift =
         isExternalLinkType(giftType) ||
         Boolean(externalLink) ||
         rawId === '20' ||
         /havan/i.test(rawTitle);
-  
-      const remaining = gift.remaining ?? gift.quantidade;
+
+      /*
+       * Usa o link de segurança quando a API
+       * identificar o item, mas não devolver o endereço.
+       */
+      if (
+        !externalLink &&
+        isExternalGift
+      ) {
+        externalLink =
+          HAVAN_LIST_URL;
+      }
+
+      /*
+       * Reconhecimento reforçado do PIX livre.
+       *
+       * O tipo da planilha é a regra principal.
+       * O ID 19 e o título funcionam como segurança.
+       */
+      const isFreePixGift =
+        isFreePixType(giftType) ||
+        rawId === '19' ||
+        /valor livre|quanto deus tocar|escolha o valor|acima de/i
+          .test(rawTitle);
+
+      const remaining =
+        gift.remaining ??
+        gift.quantidade;
 
       const remainingNumber =
-        remaining === null || remaining === undefined || remaining === ''
+        remaining === null ||
+        remaining === undefined ||
+        remaining === ''
           ? null
           : Number(remaining);
 
-      const soldOutFlag = gift.sold_out ?? gift.esgotado;
+      const soldOutFlag =
+        gift.sold_out ??
+        gift.esgotado;
+
       const apiSaysSoldOut =
         soldOutFlag === true ||
-        ['true', '1', 'sim'].includes(String(soldOutFlag ?? '').trim().toLowerCase());
+        [
+          'true',
+          '1',
+          'sim'
+        ].includes(
+          String(
+            soldOutFlag ?? ''
+          )
+            .trim()
+            .toLowerCase()
+        );
 
       const isSoldOut =
         apiSaysSoldOut ||
@@ -1031,42 +1381,61 @@
           remainingNumber <= 0
         );
 
-      const photoHTML = image
-        ? `
-          <div class="gift-photo has-image">
-            <img src="${image}" alt="${title}">
-          </div>
-        `
-        : `<div class="gift-photo" aria-hidden="true">🎁</div>`;
+      const photoHTML =
+        image
+          ? `
+            <div class="gift-photo has-image">
+              <img
+                src="${image}"
+                alt="${title}"
+              >
+            </div>
+          `
+          : `
+            <div
+              class="gift-photo"
+              aria-hidden="true"
+            >
+              🎁
+            </div>
+          `;
 
       const remainingHTML =
-        remaining === null || remaining === undefined || remaining === ''
+        remaining === null ||
+        remaining === undefined ||
+        remaining === ''
           ? ''
-          : `<p class="gift-remaining"><small>Disponíveis: ${escapeHTML(remaining)}</small></p>`;
+          : `
+            <p class="gift-remaining">
+              <small>
+                Disponíveis:
+                ${escapeHTML(remaining)}
+              </small>
+            </p>
+          `;
 
       let actionHTML = '';
 
       if (!isSoldOut) {
         if (isExternalGift) {
-          actionHTML = externalLink
-            ? `
-              <a
-                class="gift-button gift-button-link"
-                href="${escapeHTML(externalLink)}"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Quero presentear
-              </a>
-            `
-            : `
-              <button class="gift-button" type="button" disabled title="Link não informado na planilha">
-                Link indisponível
-              </button>
-            `;
+          actionHTML = `
+            <a
+              class="gift-button gift-button-link"
+              href="${escapeHTML(externalLink)}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Quero presentear
+            </a>
+          `;
+
         } else {
           actionHTML = `
-            <button class="gift-button" type="button" data-action="open-form">
+            <button
+              class="gift-button"
+              type="button"
+              data-action="open-form"
+            >
               Quero presentear
             </button>
           `;
@@ -1079,19 +1448,43 @@
           data-gift-id="${id}"
           data-gift-title="${title}"
           data-gift-type="${escapeHTML(giftType)}"
+          data-gift-free="${isFreePixGift ? 'true' : 'false'}"
           data-gift-external="${isExternalGift ? 'true' : 'false'}"
           data-gift-link="${escapeHTML(externalLink)}"
-          data-gift-amount="${amount === null ? '' : escapeHTML(amount.toFixed(2))}"
+          data-gift-amount="${
+            amount === null
+              ? ''
+              : escapeHTML(
+                  amount.toFixed(2)
+                )
+          }"
           aria-disabled="${isSoldOut ? 'true' : 'false'}"
         >
           ${photoHTML}
 
           <div class="gift-content">
-            <span class="card-label">Presente</span>
+            <span class="card-label">
+              Presente
+            </span>
+
             <h3>${title}</h3>
 
-            ${description ? `<p>${description}</p>` : ''}
-            ${value ? `<strong class="gift-price">${escapeHTML(value)}</strong>` : ''}
+            ${
+              description
+                ? `<p>${description}</p>`
+                : ''
+            }
+
+            ${
+              value
+                ? `
+                  <strong class="gift-price">
+                    ${escapeHTML(value)}
+                  </strong>
+                `
+                : ''
+            }
+
             ${remainingHTML}
             ${actionHTML}
           </div>
@@ -1100,56 +1493,95 @@
     }
 
     /************************************************
-     * POPUP PARA REGISTRAR PRESENTE
+     * FORMULÁRIO DO PRESENTE
      ************************************************/
 
-    function setGiftModalMessage(type, message) {
-      giftModalMessage.className = `gift-modal-message show ${type}`;
-      giftModalMessage.textContent = message;
+    function setGiftModalMessage(
+      type,
+      message
+    ) {
+      giftModalMessage.className =
+        `gift-modal-message show ${type}`;
+
+      giftModalMessage.textContent =
+        message;
     }
 
     function clearGiftModalMessage() {
-      giftModalMessage.className = 'gift-modal-message';
-      giftModalMessage.textContent = '';
+      giftModalMessage.className =
+        'gift-modal-message';
+
+      giftModalMessage.textContent =
+        '';
     }
 
     function openGiftFormModal(card) {
-      if (!card || card.classList.contains('esgotado')) {
+      if (
+        !card ||
+        card.classList.contains('esgotado')
+      ) {
         return;
       }
 
       /*
-       * Proteção adicional: nunca abre o popup de PIX
-       * para um presente identificado como link externo.
+       * Nunca abre o formulário de PIX
+       * para um item de link externo.
        */
-      if (card.dataset.giftExternal === 'true') {
-        const externalUrl = safeExternalUrl(card.dataset.giftLink);
+      if (
+        card.dataset.giftExternal === 'true'
+      ) {
+        const externalUrl =
+          safeExternalUrl(
+            card.dataset.giftLink
+          );
 
         if (externalUrl) {
-          window.open(externalUrl, '_blank', 'noopener,noreferrer');
+          window.open(
+            externalUrl,
+            '_blank',
+            'noopener,noreferrer'
+          );
         }
 
         return;
       }
 
-      const giftId = card.dataset.giftId || '';
-      const giftTitle = card.dataset.giftTitle || 'Presente';
-      const giftType = normalizeGiftType(
-        card.dataset.giftType || 'pix_fixo'
-      );
+      const giftId =
+        card.dataset.giftId || '';
 
-      const displayedAmount = parseAmount(
-        card.dataset.giftAmount
-      );
+      const giftTitle =
+        card.dataset.giftTitle ||
+        'Presente';
 
-      const pixAmount = isFreePixType(giftType)
-        ? null
-        : displayedAmount;
+      const giftType =
+        normalizeGiftType(
+          card.dataset.giftType ||
+          'pix_fixo'
+        );
+
+      const isFreeGift =
+        card.dataset.giftFree === 'true' ||
+        isFreePixType(giftType);
+
+      const displayedAmount =
+        parseAmount(
+          card.dataset.giftAmount
+        );
+
+      /*
+       * No PIX livre, amount precisa ser null.
+       * Isso faz o gerador omitir o campo 54.
+       */
+      const pixAmount =
+        isFreeGift
+          ? null
+          : displayedAmount;
 
       selectedGift = {
         id: giftId,
         title: giftTitle,
         type: giftType,
+        isFree: isFreeGift,
         amount: pixAmount,
         displayedAmount: displayedAmount
       };
@@ -1157,24 +1589,37 @@
       giftModalForm.reset();
       clearGiftModalMessage();
 
-      giftModalGift.textContent = giftTitle;
+      giftModalGift.textContent =
+        giftTitle;
 
       giftModalAmount.textContent =
-        isFreePixType(giftType)
-          ? 'Valor livre'
+        isFreeGift
+          ? 'Valor livre — informe no aplicativo do banco'
           : displayedAmount === null
-            ? 'Valor livre'
-            : displayedAmount.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-              });
+            ? 'Valor não informado'
+            : displayedAmount.toLocaleString(
+                'pt-BR',
+                {
+                  style: 'currency',
+                  currency: 'BRL'
+                }
+              );
 
-      document.body.classList.add('modal-open');
+      document.body.classList.add(
+        'modal-open'
+      );
 
-      if (typeof giftFormModal.showModal === 'function') {
+      if (
+        typeof giftFormModal.showModal ===
+        'function'
+      ) {
         giftFormModal.showModal();
+
       } else {
-        giftFormModal.setAttribute('open', '');
+        giftFormModal.setAttribute(
+          'open',
+          ''
+        );
       }
 
       window.setTimeout(() => {
@@ -1183,16 +1628,27 @@
     }
 
     function closeGiftFormModal() {
-      if (giftFormModal.open && typeof giftFormModal.close === 'function') {
+      if (
+        giftFormModal.open &&
+        typeof giftFormModal.close ===
+          'function'
+      ) {
         giftFormModal.close();
+
       } else {
-        giftFormModal.removeAttribute('open');
+        giftFormModal.removeAttribute(
+          'open'
+        );
       }
 
       giftModalForm.reset();
       clearGiftModalMessage();
+
       selectedGift = null;
-      document.body.classList.remove('modal-open');
+
+      document.body.classList.remove(
+        'modal-open'
+      );
     }
 
     /************************************************
@@ -1203,52 +1659,124 @@
       event.preventDefault();
 
       if (!selectedGift) {
-        setGiftModalMessage('err', 'Não foi possível identificar o presente escolhido.');
+        setGiftModalMessage(
+          'err',
+          'Não foi possível identificar o presente escolhido.'
+        );
+
         return;
       }
 
-      const giftId = selectedGift.id;
-      const giftTitle = selectedGift.title;
-      const giftType = selectedGift.type;
-      const giftAmount = selectedGift.amount;
+      const giftId =
+        selectedGift.id;
 
-      const nome = giftModalForm.elements.nome.value.trim();
-      const mensagem = giftModalForm.elements.mensagem.value.trim();
+      const giftTitle =
+        selectedGift.title;
+
+      const giftType =
+        selectedGift.type;
+
+      const isFreeGift =
+        selectedGift.isFree === true;
+
+      /*
+       * Garante novamente que o PIX livre
+       * nunca carregue o valor exibido no card.
+       */
+      const giftAmount =
+        isFreeGift
+          ? null
+          : selectedGift.amount;
+
+      const nome =
+        giftModalForm.elements.nome
+          .value
+          .trim();
+
+      const mensagem =
+        giftModalForm.elements.mensagem
+          .value
+          .trim();
 
       if (!nome) {
-        setGiftModalMessage('err', 'Informe seu nome para registrar o presente.');
+        setGiftModalMessage(
+          'err',
+          'Informe seu nome para registrar o presente.'
+        );
+
         giftModalName.focus();
+
         return;
       }
 
-      const txid = generateTxid(giftId);
+      const txid =
+        generateTxid(giftId);
 
-      giftModalSubmitButton.disabled = true;
-      giftModalSubmitButton.textContent = 'Registrando...';
+      giftModalSubmitButton.disabled =
+        true;
+
+      giftModalSubmitButton.textContent =
+        'Registrando...';
+
       clearGiftModalMessage();
 
       try {
-        const params = new URLSearchParams();
-        params.append('action', 'register');
-        params.append('gift_id', giftId);
-        params.append('name', nome);
-        params.append('message', mensagem);
-        params.append('qty', '1');
-        params.append('txid', txid);
-        params.append('tipo', giftType);
+        const params =
+          new URLSearchParams();
 
-        const response = await fetch(API, {
-          method: 'POST',
-          body: params,
-          cache: 'no-store'
-        });
+        params.append(
+          'action',
+          'register'
+        );
 
-        const text = await response.text();
+        params.append(
+          'gift_id',
+          giftId
+        );
+
+        params.append(
+          'name',
+          nome
+        );
+
+        params.append(
+          'message',
+          mensagem
+        );
+
+        params.append(
+          'qty',
+          '1'
+        );
+
+        params.append(
+          'txid',
+          txid
+        );
+
+        params.append(
+          'tipo',
+          giftType
+        );
+
+        const response =
+          await fetch(
+            API,
+            {
+              method: 'POST',
+              body: params,
+              cache: 'no-store'
+            }
+          );
+
+        const text =
+          await response.text();
 
         let data;
 
         try {
           data = JSON.parse(text);
+
         } catch (err) {
           throw new Error(
             'A resposta da API não veio em JSON. Verifique a implantação do Apps Script.'
@@ -1256,25 +1784,39 @@
         }
 
         if (!data.ok) {
-          throw new Error(data.error || 'Não foi possível registrar o presente.');
+          throw new Error(
+            data.error ||
+            'Não foi possível registrar o presente.'
+          );
         }
 
-        const pixPayload = buildPixPayload({
-          key: PIX_KEY,
-          name: PIX_NAME,
-          city: PIX_CITY,
-          amount: giftAmount,
-          txid: txid,
-          description: giftTitle
-        });
+        /*
+         * No PIX livre, amount recebe null.
+         * Assim, o código PIX será criado sem valor.
+         */
+        const pixPayload =
+          buildPixPayload({
+            key: PIX_KEY,
+            name: PIX_NAME,
+            city: PIX_CITY,
+            amount:
+              isFreeGift
+                ? null
+                : giftAmount,
+            txid: txid,
+            description: giftTitle
+          });
 
         const amountText =
-          isFreePixType(giftType) || giftAmount === null
-            ? 'valor livre'
-            : giftAmount.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-              });
+          isFreeGift
+            ? 'valor livre — informe o valor no aplicativo do banco'
+            : giftAmount.toLocaleString(
+                'pt-BR',
+                {
+                  style: 'currency',
+                  currency: 'BRL'
+                }
+              );
 
         closeGiftFormModal();
 
@@ -1285,17 +1827,23 @@
           pixPayload
         });
 
-        await loadGifts({ keepMessage: true });
+        await loadGifts({
+          keepMessage: true
+        });
 
       } catch (err) {
         setGiftModalMessage(
           'err',
-          err.message || String(err)
+          err.message ||
+          String(err)
         );
 
       } finally {
-        giftModalSubmitButton.disabled = false;
-        giftModalSubmitButton.textContent = 'Registrar presente';
+        giftModalSubmitButton.disabled =
+          false;
+
+        giftModalSubmitButton.textContent =
+          'Registrar presente';
       }
     }
 
@@ -1303,50 +1851,100 @@
      * EVENTOS
      ************************************************/
 
-    giftsGrid.addEventListener('click', event => {
-      const button = event.target.closest('button[data-action="open-form"]');
+    giftsGrid.addEventListener(
+      'click',
+      event => {
+        const button =
+          event.target.closest(
+            'button[data-action="open-form"]'
+          );
 
-      if (!button) {
-        return;
+        if (!button) {
+          return;
+        }
+
+        const card =
+          button.closest('.gift-card');
+
+        if (
+          !card ||
+          card.classList.contains('esgotado')
+        ) {
+          return;
+        }
+
+        openGiftFormModal(card);
       }
+    );
 
-      const card = button.closest('.gift-card');
+    giftModalForm.addEventListener(
+      'submit',
+      registerGift
+    );
 
-      if (!card || card.classList.contains('esgotado')) {
-        return;
+    closeGiftFormModalButton.addEventListener(
+      'click',
+      closeGiftFormModal
+    );
+
+    cancelGiftFormModalButton.addEventListener(
+      'click',
+      closeGiftFormModal
+    );
+
+    giftFormModal.addEventListener(
+      'click',
+      event => {
+        if (
+          event.target === giftFormModal
+        ) {
+          closeGiftFormModal();
+        }
       }
+    );
 
-      openGiftFormModal(card);
-    });
+    giftFormModal.addEventListener(
+      'close',
+      () => {
+        giftModalForm.reset();
+        clearGiftModalMessage();
 
-    giftModalForm.addEventListener('submit', registerGift);
+        selectedGift = null;
 
-    closeGiftFormModalButton.addEventListener('click', closeGiftFormModal);
-    cancelGiftFormModalButton.addEventListener('click', closeGiftFormModal);
-
-    giftFormModal.addEventListener('click', event => {
-      if (event.target === giftFormModal) {
-        closeGiftFormModal();
+        document.body.classList.remove(
+          'modal-open'
+        );
       }
-    });
+    );
 
-    giftFormModal.addEventListener('close', () => {
-      giftModalForm.reset();
-      clearGiftModalMessage();
-      selectedGift = null;
-      document.body.classList.remove('modal-open');
-    });
+    reloadGiftsButton.addEventListener(
+      'click',
+      () => loadGifts()
+    );
 
-    reloadGiftsButton.addEventListener('click', () => loadGifts());
+    copyPixButton.addEventListener(
+      'click',
+      copyPixCode
+    );
 
-    closePixModalButton.addEventListener('click', closePixModal);
-    finishPixModalButton.addEventListener('click', closePixModal);
+    closePixModalButton.addEventListener(
+      'click',
+      closePixModal
+    );
 
-    pixModal.addEventListener('click', event => {
-      if (event.target === pixModal) {
-        closePixModal();
+    finishPixModalButton.addEventListener(
+      'click',
+      closePixModal
+    );
+
+    pixModal.addEventListener(
+      'click',
+      event => {
+        if (event.target === pixModal) {
+          closePixModal();
+        }
       }
-    });
+    );
 
     /************************************************
      * INICIAR
