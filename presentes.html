@@ -16,6 +16,7 @@
     }
 
     .gift-card {
+      position: relative;
       overflow: hidden;
       display: grid;
       grid-template-rows: auto 1fr;
@@ -24,41 +25,33 @@
       border-radius: 18px;
       box-shadow: 0 12px 30px rgba(60, 50, 45, 0.07);
     }
-    
+
     /* ===== Presente esgotado ===== */
 
-.gift-card {
-  position: relative;
-}
+    .gift-card.esgotado {
+      pointer-events: none;
+    }
 
-.gift-card.esgotado {
-  pointer-events: none;
-}
+    .gift-card.esgotado::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.58);
+      pointer-events: none;
+    }
 
-/* Camada clara sobre o conteúdo */
-.gift-card.esgotado::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  background: rgba(255, 255, 255, 0.58);
-  pointer-events: none;
-}
-
-/* Carimbo sobre todo o card */
-.gift-card.esgotado::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 11;
-
-  background-image: url("img/esgotado.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 92% auto;
-
-  pointer-events: none;
-}
+    .gift-card.esgotado::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 11;
+      background-image: url("img/esgotado.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 92% auto;
+      pointer-events: none;
+    }
 
     .gift-photo {
       display: grid;
@@ -125,6 +118,13 @@
       border-color: rgba(244, 122, 32, 0.65);
       color: var(--orange);
       box-shadow: 0 4px 12px rgba(94, 76, 55, 0.08);
+    }
+
+    .gift-button-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
     }
 
     .gift-button:disabled {
@@ -342,8 +342,7 @@
       opacity: 0;
       padding: 0.72rem 1rem;
       border-radius: 999px;
-      border: 1px solid rgba(209, 107, 73, 0.35);
-      background: rgba(255, 255, 255, 0.9);
+      background: linear-gradient(135deg, var(--orange), var(--pink));
       color: #fff;
       font-weight: 800;
       box-shadow: 0 18px 36px rgba(60, 50, 45, 0.20);
@@ -565,6 +564,7 @@
 
     const API = 'https://script.google.com/macros/s/AKfycbxq_rsCSWGp1tZQKnfwRBgMoDiIr4lfkslA_zbayHyXICWMHhzbHFPauDKc_VRpFbhTIA/exec';
     const PIX_KEY = '+5555999329806';
+    const HAVAN_LIST_URL = 'https://lista.havan.com.br/Convidado/ItensListaPresente/947830';
 
     /*
       Para PIX copia e cola, além da chave e do valor,
@@ -654,6 +654,36 @@
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#039;');
+    }
+
+    function normalizeGiftType(value) {
+      return String(value || 'pix_fixo')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .trim()
+        .toLowerCase()
+        .replace(/[\s-]+/g, '_');
+    }
+
+    function isFreePixType(type) {
+      return ['pix_livre', 'pixlivre', 'valor_livre', 'livre'].includes(type);
+    }
+
+    function isExternalLinkType(type) {
+      return ['link_externo', 'linkexterno', 'externo', 'link', 'havan'].includes(type);
+    }
+
+    function safeExternalUrl(value) {
+      const raw = String(value || '').trim();
+      if (!raw) return '';
+
+      try {
+        const url = new URL(raw, window.location.href);
+        if (!['http:', 'https:'].includes(url.protocol)) return '';
+        return url.href;
+      } catch {
+        return '';
+      }
     }
 
     function showMessage(type, html) {
@@ -938,6 +968,49 @@
       const amount = parseAmount(rawValue);
       const value = moneyBR(rawValue);
 
+      const giftType = normalizeGiftType(
+        gift.tipo ??
+        gift.type ??
+        gift.presente_tipo ??
+        gift.tipo_presente ??
+        'pix_fixo'
+      );
+      
+      let externalLink = safeExternalUrl(
+        gift.link ??
+        gift.url ??
+        gift.href ??
+        gift.presente_link ??
+        ''
+      );
+
+      /*
+      * Link de segurança para a lista da Havan.
+       * É usado quando a API ainda não estiver enviando
+       * corretamente a coluna "link".
+       */
+      if (
+        !externalLink &&
+        (
+          rawId === '20' ||
+          /havan/i.test(rawTitle)
+        )
+      ) {
+        externalLink = HAVAN_LIST_URL;
+      }
+      
+      /*
+       * Reconhecimento reforçado do presente externo.
+       *
+       * O link preenchido já é suficiente para transformar
+       * o botão em link, mesmo que a API não envie "tipo".
+       */
+      const isExternalGift =
+        isExternalLinkType(giftType) ||
+        Boolean(externalLink) ||
+        rawId === '20' ||
+        /havan/i.test(rawTitle);
+  
       const remaining = gift.remaining ?? gift.quantidade;
 
       const remainingNumber =
@@ -971,11 +1044,43 @@
           ? ''
           : `<p class="gift-remaining"><small>Disponíveis: ${escapeHTML(remaining)}</small></p>`;
 
+      let actionHTML = '';
+
+      if (!isSoldOut) {
+        if (isExternalGift) {
+          actionHTML = externalLink
+            ? `
+              <a
+                class="gift-button gift-button-link"
+                href="${escapeHTML(externalLink)}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Quero presentear
+              </a>
+            `
+            : `
+              <button class="gift-button" type="button" disabled title="Link não informado na planilha">
+                Link indisponível
+              </button>
+            `;
+        } else {
+          actionHTML = `
+            <button class="gift-button" type="button" data-action="open-form">
+              Quero presentear
+            </button>
+          `;
+        }
+      }
+
       return `
         <article
           class="gift-card${isSoldOut ? ' esgotado' : ''}"
           data-gift-id="${id}"
           data-gift-title="${title}"
+          data-gift-type="${escapeHTML(giftType)}"
+          data-gift-external="${isExternalGift ? 'true' : 'false'}"
+          data-gift-link="${escapeHTML(externalLink)}"
           data-gift-amount="${amount === null ? '' : escapeHTML(amount.toFixed(2))}"
           aria-disabled="${isSoldOut ? 'true' : 'false'}"
         >
@@ -988,12 +1093,7 @@
             ${description ? `<p>${description}</p>` : ''}
             ${value ? `<strong class="gift-price">${escapeHTML(value)}</strong>` : ''}
             ${remainingHTML}
-
-            ${isSoldOut ? '' : `
-              <button class="gift-button" type="button" data-action="open-form">
-                Quero presentear
-              </button>
-            `}
+            ${actionHTML}
           </div>
         </article>
       `;
@@ -1018,27 +1118,56 @@
         return;
       }
 
+      /*
+       * Proteção adicional: nunca abre o popup de PIX
+       * para um presente identificado como link externo.
+       */
+      if (card.dataset.giftExternal === 'true') {
+        const externalUrl = safeExternalUrl(card.dataset.giftLink);
+
+        if (externalUrl) {
+          window.open(externalUrl, '_blank', 'noopener,noreferrer');
+        }
+
+        return;
+      }
+
       const giftId = card.dataset.giftId || '';
       const giftTitle = card.dataset.giftTitle || 'Presente';
-      const giftAmount = parseAmount(card.dataset.giftAmount);
+      const giftType = normalizeGiftType(
+        card.dataset.giftType || 'pix_fixo'
+      );
+
+      const displayedAmount = parseAmount(
+        card.dataset.giftAmount
+      );
+
+      const pixAmount = isFreePixType(giftType)
+        ? null
+        : displayedAmount;
 
       selectedGift = {
         id: giftId,
         title: giftTitle,
-        amount: giftAmount
+        type: giftType,
+        amount: pixAmount,
+        displayedAmount: displayedAmount
       };
 
       giftModalForm.reset();
       clearGiftModalMessage();
 
       giftModalGift.textContent = giftTitle;
+
       giftModalAmount.textContent =
-        giftAmount === null
+        isFreePixType(giftType)
           ? 'Valor livre'
-          : giftAmount.toLocaleString('pt-BR', {
-              style: 'currency',
-              currency: 'BRL'
-            });
+          : displayedAmount === null
+            ? 'Valor livre'
+            : displayedAmount.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+              });
 
       document.body.classList.add('modal-open');
 
@@ -1080,6 +1209,7 @@
 
       const giftId = selectedGift.id;
       const giftTitle = selectedGift.title;
+      const giftType = selectedGift.type;
       const giftAmount = selectedGift.amount;
 
       const nome = giftModalForm.elements.nome.value.trim();
@@ -1105,6 +1235,7 @@
         params.append('message', mensagem);
         params.append('qty', '1');
         params.append('txid', txid);
+        params.append('tipo', giftType);
 
         const response = await fetch(API, {
           method: 'POST',
@@ -1138,7 +1269,7 @@
         });
 
         const amountText =
-          giftAmount === null
+          isFreePixType(giftType) || giftAmount === null
             ? 'valor livre'
             : giftAmount.toLocaleString('pt-BR', {
                 style: 'currency',
